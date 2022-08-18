@@ -1,100 +1,132 @@
-# jekyll-rtd-theme
+# 1. DynamoDB를 사용하는 이유
 
-![CI](https://github.com/rundocs/jekyll-rtd-theme/workflows/CI/badge.svg?branch=develop)
-![jsDelivr](https://data.jsdelivr.com/v1/package/gh/rundocs/jekyll-rtd-theme/badge)
+---
 
-Just another documentation theme compatible with GitHub Pages
+## 1.1. DynamoDB란?
 
-## What it does?
+<aside>
+🔑 NoSQL 형태의 데이터베이스
 
-This theme is inspired by [sphinx-rtd-theme](https://github.com/readthedocs/sphinx_rtd_theme) and refactored with:
+</aside>
 
-- [@primer/css](https://github.com/primer/css)
-- [github-pages](https://github.com/github/pages-gem) ([dependency versions](https://pages.github.com/versions/))
+> **NoSQL임에도 DynamoDB는 기본키 설정이 가능하며 검색 가능 여부와 성능 상태를 위해 indexing과 key 설정이 중요하다.**
+> 
 
-## Quick start
+## 1.2. DynamoDB의 장점
 
-```yml
-remote_theme: rundocs/jekyll-rtd-theme
-```
+<aside>
+✅ full-managed : AWS의 확실한 서포트!!
 
-You can [generate](https://github.com/rundocs/starter-slim/generate) with the same files and folders from [rundocs/starter-slim](https://github.com/rundocs/starter-slim/)
+</aside>
 
-## Usage
+☑️ 클러스터링, 백업 정책, 성능 향상, 다중 리젼 지원
 
-Documentation that can guide how to create with Github pages, please refer to [rundocs.io](https://rundocs.io) for details
+☑️ 모든 데이터는 SSD에 저장되어 기본 입출력 속도 빠름
 
-## Features
+☑️ HTTP 비연결형 통신으로 데이터 가져오기 (connection pool 필요 ❌)
 
-- Shortcodes (Toasts card, mermaid)
-- Pages Plugins (emoji, gist, avatar, mentions)
-- Auto generate sidebar
-- [Attribute List Definitions](https://kramdown.gettalong.org/syntax.html#attribute-list-definitions) (Primer/css utilities, Font Awesome 4)
-- Service worker (caches)
-- SEO (404, robots.txt, sitemap.xml)
-- Canonical Link (Open Graph, Twitter Card, Schema data)
+☑️ 파티션 관리는 백그라운드에서 이루어지며, 사용자가 직접 관리할 필요 ❌ (index 세팅은 필요)
 
-## Options
+☑️ AWS라는 기업에서 운영하는 severless 플랫폼의 DB이며, 운영하다 장애가 발생하는 날에는 AWS Support의 도움으로 문제를 해결할 수 있음
 
-| name          | default value        | description       |
-| ------------- | -------------------- | ----------------- |
-| `title`       | repo name            |                   |
-| `description` | repo description     |                   |
-| `url`         | user domain or cname |                   |
-| `baseurl`     | repo name            |                   |
-| `lang`        | `en`                 |                   |
-| `direction`   | `auto`               | `ltr` or `rtl`    |
-| `highlighter` | `rouge`              | Cannot be changed |
+## 1.3.DynamoDB의 단점
 
-```yml
-# folders sort
-readme_index:
-  with_frontmatter: true
+😫 ORM 지원 라이브러리 ❌
 
-meta:
-  key1: value1
-  key2: value2
-  .
-  .
-  .
+🧬 여러 쿼리에 대한 일관성 및 원자성을 보장하지 않음 (no transaction)
 
-google:
-  gtag:
-  adsense:
+😡 높은 난이도
 
-mathjax: # this will prased to json, default: {}
+😭 턱없이 적은 참고 자료
 
-mermaid:
-  custom:     # mermaid link
-  initialize: # this will prased to json, default: {}
+🤮 워크벤치 툴 존재 ❌, Web Console GUI는 사용하기 불편
 
-scss:   # also _includes/extra/styles.scss
-script: # also _includes/extra/script.js
+## 1.4. 많은 단점들에도 불구하고 DynamoDB를 사용하는 이유?
 
-translate:
-  # shortcodes
-  danger:
-  note:
-  tip:
-  warning:
-  # 404
-  not_found:
-  # copyright
-  revision:
-  # search
-  searching:
-  search:
-  search_docs:
-  search_results:
-  search_results_found: # the "#" in this translate will replaced with results size!
-  search_results_not_found:
+1. 장점에서 언급한대로 AWS를 통한 full-managed가 가능하다는 점
+2. NoSQL은 가용성과 확장성이 높고 고성능에 최적화됐다는 점
 
-plugins:
-  - jemoji
-  - jekyll-avatar
-  - jekyll-mentions
-```
+---
 
-## The license
+# 2. DynamoDB 작동방식
 
-The theme is available as open source under the terms of the MIT License
+---
+
+## 2.1. DynamoDB 핵심 구성 요소
+
+### 2.1.1 기본키
+
+> **DynamoDB는 기본키를 Partition Key로 구성되는 단순 기본 키와 Partition Key와 Sort Key로 구성되는 복합 기본 키로 표현할 수 있다.**
+> 
+
+### 2.1.2. 보조 인덱스
+
+> **테이블에서 하나 이상의 보조 인덱스를 생성할 수 있다.**
+> 
+
+> **보조 인덱스를 사용하면 기본 키에 대한 쿼리는 물론이고 대체 키를 사용하여 테이블의 데이터도 쿼리할 수 있다.**
+> 
+
+<aside>
+⚠️ **DynamoDB에서는 인덱스를 사용하지 않아도 되지만, 인덱스 사용시 데이터를 쿼리할 때 애플리케이션에 보다 많은 유연성을 제공한다.**
+
+</aside>
+
+☑️ **테이블에서 보조 인덱스를 생성한 후**에는 테이블에서 데이터를 읽는 것과 같은 방식으로 인덱스에서 데이터를 읽을 수 있다.
+
+💡 **DynamoDB에서 지원하는 인덱스**
+
+- **글로벌 보조 인덱스**
+    
+    Partition Key 및 Sort Key가 테이블과 다를 수 있는 인덱스
+    
+- **로컬 보조 인덱스**
+    
+    기본 테이블과 Partition Key는 동일하지만 Sort Key가 다른 인덱스
+    
+
+<aside>
+✅ DynamoDB의 각 테이블에는 글로벌 보조 인덱스 20개(기본 할당량)와 로컬 보조 인덱스 5개의 할당량이 있다.
+
+</aside>
+
+☑️ DynamoDB의 테이블에서는 파티션 키를 기준으로 또는 파티션 키와 정렬 키를 기준으로 데이터 항목을 쿼리할 수 있다.
+
+### 2.1.3. DynamoDB Streams
+
+<aside>
+✅ DynamoDB Streams는 DynamoDB 테이블의 데이터 수정 이벤트를 캡처하는 선택적 기능이다.
+
+</aside>
+
+☑️ **이러한 이벤트에 대한 데이터가 이벤트가 발생한 순서대로 거의 실시간으로 스트림에 표시된다.**
+
+☑️ 각 이벤트는 스트림 레코드에 의해 나타난다.
+
+☑️ 테이블에서 스트림을 활성화하면 아래 이벤트 중 하나가 발생시 DynamoDB Streams가 스트림 레코드를 기록한다.
+
+- **테이블에 새로운 항목이 추가**되면 스트림이 해당 속성을 모두 포함하여 전체 항목의 이미지를 캡처한다.
+- **항목이 업데이트**되면 스트림이 항목에서 수정된 속성의 사전 및 사후 이미지를 캡처한다.
+- **테이블에서 항목이 삭제**되면 스트림이 항목이 삭제되기 전에 전체 항목의 이미지를 캡처한다.
+
+☑️ 각 스트림 레코드에는 또한 테이블의 이름, 이벤트 타임스탬프 및 다른 메타데이터가 포함되어 있다.
+
+**📌 스트림 레코드의 수명 → 24시간**
+
+**📌 24시간이 지나면 자동으로 제거**
+
+💡 **DynamoDB Streams를 AWS Lambda와 함께 사용하면** *트리거*, 즉 관심 있는 이벤트가 스트림에 나타날 때마다 자동으로 실행되는 코드를 생성할 수 있다. 
+
+<aside>
+⏩ 예를 들어, 회사의 고객 정보가 들어 있는 Customers 테이블을 생각해봤을 때, 새 고객마다 환영 이메일을 보내려는 상황을 가정해보자.
+
+</aside>
+
+✔️ 해당 테이블에 스트림을 활성화한 후, 스트림을 람다 함수와 연결할 수 있다.
+
+✔︎ 람다 함수는 새로운 스트림 레코드가 표시될 때마다 실행되지만, Customers 테이블에 추가된 새로운 항목만 처리한다.
+
+✔︎ EmailAddress 속성이 있는 모든 항목에 대해 람다 함수는 Amazon SES (Amazon Simple Email Service)를 호출하여 해당 주소에 이메일을 보낸다.
+
+
+‼️ **DynamoDB Streams는 트리거 뿐 아니라, AWS region 내 혹은 region 간의 데이터 복제, DynamoDB 테이블의 구체화된 데이터 보기, Kinesis 구체화된 보기를 사용한 데이터 분석 등의 강력한 솔루션을 지원한다.**
