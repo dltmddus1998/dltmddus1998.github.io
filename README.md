@@ -1,10 +1,10 @@
-### 🎓 학력
-한양여자대학교 소프트웨어융합과(구.컴퓨터정보과) 학사 졸업
+### 🎓 Profile
+#### Node.js 개발자 이승연
+#### [GITHUB](https://github.com/dltmddus1998)
 
 ### 🔗 site
-
-#### [🌐 Tech Blog](https://dltmddus1998.github.io/)
 #### [💽 Study DB](https://vaulted-occupation-087.notion.site/Study-DataBase-ea3b5b576fad41f1b8c5e9fbf494d23f)
+
 
 ### 💻 프로젝트
 
