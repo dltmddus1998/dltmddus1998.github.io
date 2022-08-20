@@ -1,3 +1,8 @@
+# Bepol 프로젝트 배포 Dev-log (ing)
+
+## 배포중인 프로젝트
+[👆 GITHUB LINK](https://github.com/oxopolitics-internship-for-codestates/BePol)
+
 ![image](https://user-images.githubusercontent.com/73332608/185758877-c6ad19f2-666f-4e0c-95cd-a3d25bfada71.png)
 
 ![image](https://user-images.githubusercontent.com/73332608/185758880-77e975b1-8585-4415-914a-240ddcfc6a90.png)
