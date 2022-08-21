@@ -2,6 +2,6 @@
 sort: 1
 ---
 
-# Tech Blog
+# Dev Log
 
 {% include list.liquid all=true %}
