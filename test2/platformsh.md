@@ -1,4 +1,4 @@
-# Bepol 프로젝트 배포 Dev-log (ing)
+# Bepol 프로젝트 배포 Dev-log
 
 ## 배포중인 프로젝트
 [👆 GITHUB LINK](https://github.com/oxopolitics-internship-for-codestates/BePol)
