@@ -29,7 +29,7 @@ platform.sh는 자료도 턱없이 부족하고 오류에 대해 구글링해도
 RDS로 데이터베이스를 배포하면 과금이 될 수도 있어서 걱정했는데 MONGODB는 애초에 Atlas로 설정해주면 따로 배포할 필요가 없는 게 다행인 점이었다.
 그래서 AWS EC2를 통해 서버 배포를 진행했고 문제없이 배포를 완료했다... 그동안 platform.sh (이전에 Heroku로도 하루정도 허비했다^^)로 날린 시간이 무색하게도 ㅎㅎ
 
-![image](image.png)
+![image](https://user-images.githubusercontent.com/73332608/185874055-3641c60b-0c56-495f-ba34-deedac3f838d.png)
 
 ### 그런데 또 문제가? 다행히 바로 해결!
 이제 클라이언트는 뭐 별거 없겠지 생각하고 야심차게 Netlify로 간편하게 빌드 및 배포까지 마쳤는데!! 아니 styled-componenets가 적용이 안된다. 🤬
