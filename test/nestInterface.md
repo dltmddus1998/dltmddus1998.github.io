@@ -8,7 +8,7 @@
 
 ☑️ 컨트롤러는 요청을 받고 처리된 결과를 응답으로 돌려주는 인터페이스 역할이다.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/840aee5f-da31-49c3-a47b-bace6a5542ea/Untitled.png)
+![image](https://user-images.githubusercontent.com/73332608/186041045-5002895b-e834-4df6-9eb9-5f46e88abb7a.png)
 
 > 컨트롤러를 사용 목적에 따라 구분하면 구조적이고 모듈화된 소프트웨어를 작성할 수 있다.
 > 
@@ -118,7 +118,7 @@ export class AppController {
 
 ☑️ 요청 객체 (req)가 어떻게 구성되어 있는지 콘솔에 출력하면 다음과 같이 나온다.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/9c4c1166-0c50-4091-9c78-d94579c77f6b/Untitled.png)
+![image](https://user-images.githubusercontent.com/73332608/186041086-51678bb9-26c2-4fcc-9d0b-c81cf0528c7e.png)
 
 ☑️ 다행히 우리가 API 작성시 요청 객체를 직접 다루는 경우는 거의 없다. 
 
@@ -182,7 +182,7 @@ findOne(@Param("id") id: string) {
 > Nest는 응답 헤더를 자동 구성해준다.
 > 
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/21b84edc-ccc0-4e81-9bd0-839ce5550038/Untitled.png)
+![image](https://user-images.githubusercontent.com/73332608/186043586-6de97644-f4ad-46a8-9117-a9a8d87d0890.png)
 
 ☑️ 응답에 커스텀 헤더를 추가하려면 `@Header` 데코레이터를 사용하면 된다.
 
@@ -199,7 +199,7 @@ findOneWithHeader(@Param("id") id: string) {
 }
 ```
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e22d4f55-5aa7-48c1-99c1-6d2f75658b97/Untitled.png)
+![image](https://user-images.githubusercontent.com/73332608/186043619-178daaf2-7dbb-49c2-8d50-6abfcdf671da.png)
 
 ### ➕➕➕ 추가
 
@@ -209,7 +209,7 @@ findOneWithHeader(@Param("id") id: string) {
 
 </aside>
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2b38655a-95a8-4497-b64a-ec0871b457f8/Untitled.png)
+![image](https://user-images.githubusercontent.com/73332608/186043653-6def2b5e-e5e7-49d2-9887-9189550526b5.png)
 
 ### 리디렉션 (Redirection)
 
