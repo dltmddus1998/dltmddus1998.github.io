@@ -130,3 +130,215 @@ export class UserEntity {
   ...
 }
 ```
+
+이후 서버를 실행시키면 다음과 같이 User 테이블이 생성됐다.
+
+![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c90026ac-da88-47bd-888e-14396e5060f4/Untitled.png)
+
+```tsx
+...
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { UserEntity } from './entity/user.entity';
+
+@Module({
+  imports: [
+        ...
+        TypeOrmModule.forFeature([UserEntity]),
+    ],
+    ...
+})
+export class UsersModule {}
+```
+
+☑️ UsersModule에서 forFeature() 메소드로 유저 모듈 내에서 사용할 저장소를 등록한다.
+
+```tsx
+...
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { UserEntity } from './entity/user.entity';
+
+export class UsersService {
+  constructor(
+        ...
+    @InjectRepository(UserEntity) private usersRepository: Repository<UserEntity>,
+  ) { }
+    ...
+}
+```
+
+☑️ UsersService에서 `@InjectRepository()` 데코레이터로 유저 레포지토리를 주입한다.
+
+☑️ 여기서 주입한 레포지터리를 통해 다음과 같이 데이터베이스에 저장한다.
+
+```tsx
+...
+import { ulid } from "ulid";
+
+...
+private async saveUser(name: string, email: string, password: string, signupVerifyToken: string) {
+  const user = new UserEntity();
+  user.id = ulid();
+  user.name = name;
+  user.email = email;
+  user.password = password;
+  user.signupVerifyToken = signupVerifyToken;
+  await this.usersRepository.save(user);
+}
+...
+```
+
+☑️ 다음은 기존 유저 정보를 확인하는 함수이다.
+
+☑️ 가입시 이미 존재하는 회원이면 422 에러를 내도록 한다. (`UnprocessableEntityException`)
+
+```tsx
+async createUser(name: string, email: string, password: string) {
+  const userExist = await this.checkUserExists(email);
+  if (userExist) {
+    throw new UnprocessableEntityException("해당 이메일로는 가입할 수 없습니다."); // 422 error 
+  }
+	...
+}
+
+...
+
+private async checkUserExists(emailAddress: string): Promise<boolean> {
+  const user = await this.userRepository.findOne({
+    where: {
+      email: emailAddress,
+    },
+  });
+
+  return user !== undefined;
+}
+```
+
+## 트랜잭션 처리
+
+<aside>
+💡  트랜잭션은 요청을 처리하는 과정에서 데이터베이스에 변경이 일어나는 요청을 독립적으로 분리하고 에러가 발생했을 경우 이전 상태로 되돌리게 하기 위해 데이터베이스에서 제공하는 기능이다.
+
+</aside>
+
+📌 TypeORM에서 트랜잭션을 사용하는 방법은 아래와 같이 3가지가 있다.
+
+- `QueryRunner`를 이용하여 단일 DB 커넥션 상태를 생성하고 관리하기
+- `transaction` 객체를 생성해서 이용하기
+- `@Transaction`, `@TransactionManager`, `@TransactionRepository` 데코레이터를 사용하기.
+
+⚠️ 이중 데코레이터를 사용하는 방식은 Nest에서 권장하지 않는다. 마지막 방법은 제외하자.
+
+### QueryRunner 클래스를 사용하는 방법
+
+> QueryRunner를 사용하면 트랜잭션을 완전히 제어할 수 있다.
+> 
+
+```tsx
+...
+import { Connection, ... } from 'typeorm';
+
+@Injectable()
+export class UsersService {
+  constructor(
+        ...
+        private connection: Connection,
+  ) { }
+    ...
+}
+```
+
+☑️ 먼저 typeorm에서 제공하는 Connection 객체를 주입했다.
+
+👩🏻‍💻 **참고 문서대로 하던 중 다음과 같은 에러를 만났다.**
+
+![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f6c50ab4-9249-4c4a-a1a2-89c4c955b6a8/Untitled.png)
+
+👉 **구글링을 해보니, 0.3.0 버전 업데이트 당시 Connection이 DataSource라는 이름으로 변경됐다고 나온다.(지금 사용중인 typeorm version: ^0.3.7)**
+
+![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c4083f86-3165-45af-99f3-ffeab7c34235/Untitled.png)
+
+👉 복잡할 건 없다. 위 코드를 다음과 같이 수정해주기만 하면 된다. (변수명은 고칠 필요는 없는데 가독성을 위해…)
+
+```tsx
+...
+import { DataSource, ... } from 'typeorm';
+
+@Injectable()
+export class UsersService {
+  constructor(
+        ...
+        private dataSource: DataSource,
+  ) { }
+    ...
+}
+```
+
+☑️ DataSource 객체에서 트랜잭션 생성이 가능하다.
+
+☑️ 유저를 저장하는 로직에 트랜잭션을 걸어보자. (위에서 구성해준 saveUser를 지우고 대신 saveUserUsingQueryRunner을 구성해보자)
+
+```tsx
+private async saveUserUsingQueryRunner(
+    name: string,
+    email: string,
+    password: string,
+    signupVerifyToken: string
+  ) {
+    const queryRunner = this.dataSource.createQueryRunner();
+
+    await queryRunner.connect();
+    await queryRunner.startTransaction(); // 트랜잭션 시작
+
+    try {
+      const user = new UserEntity();
+      user.id = ulid();
+      user.name = name;
+      user.email = email;
+      user.password = password;
+      user.signupVerifyToken = signupVerifyToken;
+
+      await queryRunner.manager.save(user);
+
+      await queryRunner.commitTransaction(); // 에러 x -> commit
+    } catch (e) {
+      await queryRunner.rollbackTransaction(); // 에러 o -> rollback
+    } finally {
+      await queryRunner.release(); // QueryRunner 해제
+    }
+  }
+```
+
+### transaction 객체를 생성해서 사용하는 방법
+
+💡 또 다른 방법으로 dataSource 객체 내의 transaction 메서드를 바로 이용하는 방법도 있다. 
+
+👉 해당 메서드의 주석을 보면 다음과 같다.
+
+> **transaction 메소드는 주어진 함수 실행을 트랜잭션으로 래핑한다.**
+> 
+
+> **모든 데이터베이스 연산은 제공된 엔티티 매니저를 이용하여 실행해야 한다.**
+> 
+
+☑️ transaction 메서드는 `EntityManager`를 콜백으로 받아 사용자가 어떤 작업을 수행할 함수를 작성할 수 있도록 해준다.
+
+```tsx
+private async saveUserUsingTransaction(
+    name: string,
+    email: string,
+    password: string,
+    signupVerifyToken: string
+  ) {
+    await this.dataSource.transaction(async (manager) => {
+      const user = new UserEntity();
+      user.id = ulid();
+      user.name = name;
+      user.email = email;
+      user.password = password;
+      user.signupVerifyToken = signupVerifyToken;
+
+      await manager.save(user);
+    });
+  }
+```
