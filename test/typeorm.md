@@ -1,8 +1,8 @@
 # TypeORM이란? (ing)
 
-# TypeORM 사용해보기 
+## TypeORM 사용해보기 
 
-## TypeORM으로 데이터베이스 연결하기
+### TypeORM으로 데이터베이스 연결하기
 
 > NestJS 실습용 코드 - 회원가입 서버 구현 중…
 > 
@@ -52,7 +52,7 @@ export declare type TypeOrmModuleOptions = {
 } & Partial<ConnectionOptions>;
 ```
 
-### ormconfig.json 활용하기
+#### ormconfig.json 활용하기
 
 > Nest는 데이터베이스를 연결하는 또 다른 방법을 제공한다.
 루트 디렉토리에 `ormconfig.json` 파일이 있다면 `TypeOrmModule.forRoot()` 에 옵션 객체를 전달하지 않아도 된다.
@@ -93,7 +93,7 @@ export class AppModule {}
 
 📌 **이 부분은 다른 페이지에 따로 정리하겠다.**
 
-## 요청한 정보 데이터베이스에 저장하기
+### 요청한 정보 데이터베이스에 저장하기
 
 > 위에서 언급했듯이 회원가입 관련 서버를 실습 중에 typeORM을 진행중이다.
 따라서, 회원 가입을 요청한 유저의 정보를 저장해보려 한다.
@@ -133,7 +133,7 @@ export class UserEntity {
 
 이후 서버를 실행시키면 다음과 같이 User 테이블이 생성됐다.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c90026ac-da88-47bd-888e-14396e5060f4/Untitled.png)
+![image](https://user-images.githubusercontent.com/73332608/186462766-3a6e7370-27c0-499a-91bd-e11d9cb851c5.png)
 
 ```tsx
 ...
@@ -214,7 +214,7 @@ private async checkUserExists(emailAddress: string): Promise<boolean> {
 }
 ```
 
-## 트랜잭션 처리
+### 트랜잭션 처리
 
 <aside>
 💡  트랜잭션은 요청을 처리하는 과정에서 데이터베이스에 변경이 일어나는 요청을 독립적으로 분리하고 에러가 발생했을 경우 이전 상태로 되돌리게 하기 위해 데이터베이스에서 제공하는 기능이다.
@@ -229,7 +229,7 @@ private async checkUserExists(emailAddress: string): Promise<boolean> {
 
 ⚠️ 이중 데코레이터를 사용하는 방식은 Nest에서 권장하지 않는다. 마지막 방법은 제외하자.
 
-### QueryRunner 클래스를 사용하는 방법
+#### QueryRunner 클래스를 사용하는 방법
 
 > QueryRunner를 사용하면 트랜잭션을 완전히 제어할 수 있다.
 > 
@@ -252,11 +252,11 @@ export class UsersService {
 
 👩🏻‍💻 **참고 문서대로 하던 중 다음과 같은 에러를 만났다.**
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f6c50ab4-9249-4c4a-a1a2-89c4c955b6a8/Untitled.png)
+![image](https://user-images.githubusercontent.com/73332608/186462871-d0900669-a0d0-49c2-855b-4459ed03b632.png)
 
 👉 **구글링을 해보니, 0.3.0 버전 업데이트 당시 Connection이 DataSource라는 이름으로 변경됐다고 나온다.(지금 사용중인 typeorm version: ^0.3.7)**
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c4083f86-3165-45af-99f3-ffeab7c34235/Untitled.png)
+![image](https://user-images.githubusercontent.com/73332608/186463023-1081f257-0622-4319-b1b6-880577f3a35d.png))
 
 👉 복잡할 건 없다. 위 코드를 다음과 같이 수정해주기만 하면 된다. (변수명은 고칠 필요는 없는데 가독성을 위해…)
 
@@ -309,7 +309,7 @@ private async saveUserUsingQueryRunner(
   }
 ```
 
-### transaction 객체를 생성해서 사용하는 방법
+#### transaction 객체를 생성해서 사용하는 방법
 
 💡 또 다른 방법으로 dataSource 객체 내의 transaction 메서드를 바로 이용하는 방법도 있다. 
 
