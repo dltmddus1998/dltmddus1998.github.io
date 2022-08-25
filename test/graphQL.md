@@ -356,13 +356,13 @@ fragment comparisonFields on Character {
 }
 ```
 
-# 실제 프로젝트에 적용해보기
+## 실제 프로젝트에 적용해보기
 
-## graphql 관련 라이브러리 설치
+### graphql 관련 라이브러리 설치
 
 `npm install @nestjs/graphql apollo-server-express graphql-tools type-graphql graphql`
 
-## app.module.ts 구성
+### app.module.ts 구성
 
 ```tsx
 @Module({
@@ -388,7 +388,7 @@ fragment comparisonFields on Character {
 
 ☑️ entities 옵션을 통해 entity 파일들에 있는 모델들을 추가할 수 있다.
 
-## Entity 구성
+### Entity 구성
 
 > typeorm에서 entity를 통해 미리 정의해둔 모델이 있다.
 여기에 graphql은 typeDefs를 통해 데이터 타입과 요청의 타입을 정의하는 것을 추가해주자.
@@ -432,14 +432,14 @@ export class UserEntity {
 }
 ```
 
-### Options (Field, Column)
+#### Options (Field, Column)
 
 - nullable
 - description
 
-## Repository 활용하기
+### Repository 활용하기
 
-### module에 등록하기
+#### module에 등록하기
 
 ☑️ `user.module.ts`에 다음과 같이 forFeature 메서드를 이용하여 entity를 등록해준다.
 
@@ -501,7 +501,7 @@ export class UsersService {
 	...
 ```
 
-## Resolver 생성하기
+### Resolver 생성하기
 
 <aside>
 💡 resolver는 요청들의 액션을 실제로 구현하는 부분이다.
@@ -517,7 +517,7 @@ export class UsersService {
 resolver에서는 실제 해당 함수를 구현하는 것이다.
 > 
 
-### 회원가입 부분 graphql 구현해보기
+#### 회원가입 부분 graphql 구현해보기
 
 ```tsx
 import { Field, InputType } from "@nestjs/graphql";
