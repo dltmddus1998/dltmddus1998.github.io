@@ -1,4 +1,4 @@
-# TypeORM이란? (ing)
+# TypeORM with NestJS
 
 ## TypeORM 사용해보기 
 
