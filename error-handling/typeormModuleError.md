@@ -72,7 +72,7 @@ imports: [
 
 ## GraphQLError: "message": "Expected Iterable, but did not find one for field
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2e5843d3-16fe-4434-ac89-2bc4c8d96def/Untitled.png)
+![image](https://user-images.githubusercontent.com/73332608/187159479-56980559-52bf-4e7c-9b8c-474a40e6de41.png)
 
 🍀 계속해서 이런 에러가 나온다… 근데 진짜 nest.js + typeorm + graphql 이 셋다 자료가 너무 없어서 혼자 해결하기 너무 힘들다. 구글링이 거의 필요없고 그냥 공식문서에 의존해서 혼자 원시적인 것까지 다 생각해야해서 이게 진정한 개발인건가 라는 생각이 들었다…
 
@@ -81,4 +81,4 @@ imports: [
 
 이유는 모르겠지만, 다음과 같이 잘 돌아간다. 서버는 —watch로 자동으로 새로고침되도록 해놓았기때문에 서버 재시작의 문제는 아닌듯 하고 잠시 graphql쪽에서 문제가 생겼던 것 같다. 
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2d67d827-8709-4812-8413-eb1342effe0b/Untitled.png)
+![image](https://user-images.githubusercontent.com/73332608/187159540-54c83645-ae3a-46c2-9c30-2f8fd43fbdd2.png)
