@@ -3,6 +3,8 @@
 # 개발 기간
 2022.08.17 ~ 2022.
 
+# 게시판 끌올(맨위로 끌어올리기) 구현
+
 ## ⚒ 데이터베이스 구성
 
 > 아직 전체적인 데이터베이스가 구성되지 않았기 때문에 foreign key 등의 DB의 관계성에 대한 부분은 우선 제외하고 구현했다.
@@ -236,3 +238,219 @@ import {PostEntity} from './post.entity';
 })
 export class PostModule {}
 ```
+
+# 가격 제안하기 구현
+
+# ⚒ 데이터베이스 구성
+
+```tsx
+import {Column, Entity, PrimaryColumn} from 'typeorm';
+import {Field, Int, ObjectType} from '@nestjs/graphql';
+
+@Entity()
+@ObjectType()
+export class PriceOfferEntity {
+  @Field(type => Int)
+  @PrimaryColumn({nullable: false})
+  priceOfferId: number;
+
+  @Field()
+  @Column({
+    default: 0,
+    nullable: false,
+  })
+  offerPrice: number;
+
+  @Field()
+  @Column({
+    default: false,
+    nullable: false,
+  })
+  accept: boolean;
+
+  @Field()
+  @Column({
+    default: new Date(),
+    nullable: false,
+  })
+  createdAt: Date;
+}
+```
+
+## 모델간 관계 설정 (postEntity ↔ priceOfferEntity)
+
+☑️ 게시글 1개당 가격 제안은 여러개 존재할 수 있으므로 이는 **1:N 관계**로 표현할 수 있다.
+
+→ typeorm의 **OneToMany**와 **ManyToOne**을 이용하여 구현해보자.
+
+### PostEntity (1)
+
+```tsx
+...
+@OneToMany(type => PriceOfferEntity, priceOfferEntity => priceOfferEntity.postEntities)
+  priceOfferEntities!: PriceOfferEntity[];
+...
+```
+
+### PriceOfferEntity (N)
+
+```tsx
+...
+@ManyToOne(type => PostEntity, postEntity => postEntity.priceOfferEntities)
+  postEntities!: PostEntity;
+...
+```
+
+### ✔︎ 데이터베이스 구조 확인
+
+![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/79a4a5c5-f0e2-4894-bf87-2057cc5bf60e/Untitled.png)
+
+# 👩🏻‍💻 기능 구현
+
+## post.service.ts 구현
+
+↙️ 이전에 구현했던 파일에 이어서 구현했다.   
+
+[게시글 끌어올리기 기능 구현](https://www.notion.so/278f59e83dc04b908153a496fbf02407)
+
+### offerPrice (가격 제안 메서드)
+
+1️⃣ 가격 제안 요청 to 판매자 (제안하고자 하는 가격, 판매자 PUT) ()
+
+2️⃣ 판매자에게 가격 제안 알림 기능 ()
+
+🅰️ 수락시 - isOfferedPrice = true & price = offeredPrice로 재할당 ()
+
+🅱️ 거절시 - nothing ()
+
+☑️ 데이터 교환을 위해 만들어준 offerPriceDto 타입으로 인수를 받아온다.
+
+```tsx
+import {Field, InputType} from '@nestjs/graphql';
+
+@InputType()
+export class OfferPriceDto {
+  @Field()
+  readonly priceOfferId: number;
+
+  @Field()
+  readonly postId: number;
+
+  @Field()
+  offerPrice: number;
+
+  @Field()
+  accept: boolean;
+}
+```
+
+☑️ typeorm의 connection을 통해 데이터베이스 트랜잭션 처리를 했다. 
+
+☑️ 예외처리는 `@nestjs/common`의 `NotFoundException`을 통해 404 에러 처리를 진행했다.
+
+☑️ private으로 offerPrice에서 사용할 메서드들을 선언해주었다. 
+
+```tsx
+async offerPrice(offerPriceDto: OfferPriceDto): Promise<boolean> {
+  const {priceOfferId, postId, offerPrice, accept} = offerPriceDto;
+
+  const queryRunner = this.connection.createQueryRunner();
+
+  await queryRunner.connect();
+  await queryRunner.startTransaction(); // 트랜잭션 처리
+
+  const priceOfferedPost = await this.requestPriceToSeller(priceOfferId, offerPrice);
+
+  if (!priceOfferedPost) {
+    throw new NotFoundException('게시물을 찾을 수 없습니다.'); // 404 error
+  }
+
+  await this.responsePriceToSeller(); // TODO - 유저 테이블 구체화된 후 수정 (알림기능)
+
+  const answer = await this.determineOfferedPrice(accept, priceOfferId, postId);
+
+  queryRunner.manager.save(priceOfferedPost);
+
+  return answer; // true || false
+}
+```
+
+### requestPriceToSeller (판매자에게 가격 제안 요청)
+
+```tsx
+private async requestPriceToSeller(priceOfferId: number, offerPrice: number): Promise<object> {
+  const priceOffered = await this.priceOfferRepository.findOne({
+    where: {
+      priceOfferId,
+    },
+  });
+
+  priceOffered.offerPrice = offerPrice;
+  this.priceOfferRepository.save(priceOffered);
+  return priceOffered;
+}
+```
+
+### 판매자에게 가격 제안 알림 보내기 (responsePriceToSeller - TODO)
+
+```tsx
+private async responsePriceToSeller() {}
+```
+
+### 판매자의 가격 제안 수락 여부 (determineOfferedPrice)
+
+```tsx
+private async determineOfferedPrice(accept: boolean, priceOfferId: number, postId: number): Promise<boolean> {
+  const post = await this.postRepository.findOne({
+    where: {
+      postId,
+    },
+  });
+  const priceOffered = await this.priceOfferRepository.findOne({
+    where: {
+      priceOfferId,
+    },
+  });
+  if (accept) {
+    post.isOfferedPrice = true;
+    post.price = priceOffered.offerPrice;
+
+    this.postRepository.save(post);
+    this.priceOfferRepository.save(priceOffered);
+
+    return true;
+  } else {
+    return false;
+  }
+}
+```
+
+☑️ **typeorm의 connection을 이용하여 트랜잭션을 처리해주었다.** 
+
+```tsx
+async offerPrice(offerPriceDto: OfferPriceDto): Promise<boolean> {
+	...
+  const queryRunner = this.connection.createQueryRunner();
+
+  await queryRunner.connect();
+  await queryRunner.startTransaction(); // 트랜잭션 처리
+  ...
+	queryRunner.manager.save(priceOfferedPost); // 저장
+
+	...
+}
+```
+
+## post.resolver.ts 구현
+
+```tsx
+// 가격 제안 to 판매자
+@Mutation(() => PriceOfferEntity)
+async offerPriceToSeller(@Args('offerPriceDto') offerPriceDto: OfferPriceDto): Promise<PriceOfferEntity> {
+  return await this.postService.offerPrice(offerPriceDto);
+}
+```
+
+## GraphQL로 request & response 확인하기
+
+![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1d249d76-be05-4517-9e02-be142ed5dee0/Untitled.png)
