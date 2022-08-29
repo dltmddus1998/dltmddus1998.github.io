@@ -9,7 +9,7 @@
 
 ## NestExceptionError: Nest can't resolve dependencies
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/80c4716e-2b15-4af0-8988-cdfc89bb266b/Untitled.png)
+![image](https://user-images.githubusercontent.com/73332608/187139045-9b9a954b-0a3d-468e-8799-ab7a6dd0e2b2.png)
 
 > **위에 빨간색 에러를 보면 “index[1] 위치의 Repository가 Module에서 사용가능한지”에 대한 내용이다.**
 > 
