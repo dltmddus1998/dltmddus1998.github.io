@@ -3,9 +3,9 @@
 # 개발 기간
 2022.08.17 ~ 2022.
 
-# 게시판 끌올(맨위로 끌어올리기) 구현
+## 게시판 끌올(맨위로 끌어올리기) 구현
 
-## ⚒ 데이터베이스 구성
+### ⚒ 데이터베이스 구성
 
 > 아직 전체적인 데이터베이스가 구성되지 않았기 때문에 foreign key 등의 DB의 관계성에 대한 부분은 우선 제외하고 구현했다.
 > 
@@ -99,13 +99,13 @@ export class PostEntity {
 }
 ```
 
-## 👩🏻‍💻 구현 방법
+### 👩🏻‍💻 구현 방법
 
 1️⃣ POST 테이블을 기본적으로 updatedAt을 기준으로 정렬한다는 가정 하에 구현한다.
 
 2️⃣ POST 테이블에서 끌어올리고자 하는 게시글의 updatedAt을 현재 날짜로 수정한다.
 
-### post.resolve.ts 구현
+#### post.resolve.ts 구현
 
 > service 파일에서 구현한 “게시글 끌어올리기”를 위한 메서드를 여기에서 사용한다. → `pullUpPost`
 > 
@@ -129,7 +129,7 @@ export class PostResolve {
 }
 ```
 
-### pullUpPostInput.ts
+#### pullUpPostInput.ts
 
 > 계층간 데이터 교환 구현
 > 
@@ -144,7 +144,7 @@ export class PullUpPostInput {
 }
 ```
 
-### post.service.ts 구현
+#### post.service.ts 구현
 
 > InjectRepository 데코레이터로 POST 테이블을 통해 Repository를 생성했다. (데이터베이스 조작시 사용)
 > 
@@ -177,7 +177,7 @@ export class PostService {
 }
 ```
 
-#### findPost (private 메서드)
+##### findPost (private 메서드)
 
 ```tsx
 // pullUpPost에서 사용할 private 메서드 생성
@@ -197,7 +197,7 @@ private async findPost(postId: number): Promise<object> {
 }
 ```
 
-#### changeUpdatedAt (private 메서드)
+##### changeUpdatedAt (private 메서드)
 
 ```tsx
 private async changeUpdatedAt(postId: number): Promise<boolean> {
@@ -222,7 +222,7 @@ private async changeUpdatedAt(postId: number): Promise<boolean> {
 }
 ```
 
-### post.app.module 구현
+#### post.app.module 구현
 
 ```tsx
 import {Module} from '@nestjs/common';
@@ -239,9 +239,9 @@ import {PostEntity} from './post.entity';
 export class PostModule {}
 ```
 
-# 가격 제안하기 구현
+## 가격 제안하기 구현
 
-# ⚒ 데이터베이스 구성
+### ⚒ 데이터베이스 구성
 
 ```tsx
 import {Column, Entity, PrimaryColumn} from 'typeorm';
@@ -277,13 +277,13 @@ export class PriceOfferEntity {
 }
 ```
 
-## 모델간 관계 설정 (postEntity ↔ priceOfferEntity)
+### 모델간 관계 설정 (postEntity ↔ priceOfferEntity)
 
 ☑️ 게시글 1개당 가격 제안은 여러개 존재할 수 있으므로 이는 **1:N 관계**로 표현할 수 있다.
 
 → typeorm의 **OneToMany**와 **ManyToOne**을 이용하여 구현해보자.
 
-### PostEntity (1)
+#### PostEntity (1)
 
 ```tsx
 ...
@@ -292,7 +292,7 @@ export class PriceOfferEntity {
 ...
 ```
 
-### PriceOfferEntity (N)
+#### PriceOfferEntity (N)
 
 ```tsx
 ...
@@ -301,19 +301,19 @@ export class PriceOfferEntity {
 ...
 ```
 
-### ✔︎ 데이터베이스 구조 확인
+#### ✔︎ 데이터베이스 구조 확인
 
 ![image](https://user-images.githubusercontent.com/73332608/187168661-5b1c68f2-da0a-42a7-9879-26ecc8aaf59e.png)
 
-# 👩🏻‍💻 기능 구현
+## 👩🏻‍💻 기능 구현
 
-## post.service.ts 구현
+### post.service.ts 구현
 
 ↙️ 이전에 구현했던 파일에 이어서 구현했다.   
 
 [게시글 끌어올리기 기능 구현](https://www.notion.so/278f59e83dc04b908153a496fbf02407)
 
-### offerPrice (가격 제안 메서드)
+#### offerPrice (가격 제안 메서드)
 
 1️⃣ 가격 제안 요청 to 판매자 (제안하고자 하는 가격, 판매자 PUT) ()
 
@@ -375,7 +375,7 @@ async offerPrice(offerPriceDto: OfferPriceDto): Promise<boolean> {
 }
 ```
 
-### requestPriceToSeller (판매자에게 가격 제안 요청)
+#### requestPriceToSeller (판매자에게 가격 제안 요청)
 
 ```tsx
 private async requestPriceToSeller(priceOfferId: number, offerPrice: number): Promise<object> {
@@ -391,13 +391,13 @@ private async requestPriceToSeller(priceOfferId: number, offerPrice: number): Pr
 }
 ```
 
-### 판매자에게 가격 제안 알림 보내기 (responsePriceToSeller - TODO)
+#### 판매자에게 가격 제안 알림 보내기 (responsePriceToSeller - TODO)
 
 ```tsx
 private async responsePriceToSeller() {}
 ```
 
-### 판매자의 가격 제안 수락 여부 (determineOfferedPrice)
+#### 판매자의 가격 제안 수락 여부 (determineOfferedPrice)
 
 ```tsx
 private async determineOfferedPrice(accept: boolean, priceOfferId: number, postId: number): Promise<boolean> {
@@ -441,7 +441,7 @@ async offerPrice(offerPriceDto: OfferPriceDto): Promise<boolean> {
 }
 ```
 
-## post.resolver.ts 구현
+### post.resolver.ts 구현
 
 ```tsx
 // 가격 제안 to 판매자
@@ -451,6 +451,6 @@ async offerPriceToSeller(@Args('offerPriceDto') offerPriceDto: OfferPriceDto): P
 }
 ```
 
-## GraphQL로 request & response 확인하기
+### GraphQL로 request & response 확인하기
 
 ![image](https://user-images.githubusercontent.com/73332608/187168754-88192863-9b42-4711-86ed-db16c5d8a9a8.png)
