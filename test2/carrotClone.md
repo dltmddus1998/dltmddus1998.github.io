@@ -303,7 +303,7 @@ export class PriceOfferEntity {
 
 ### ✔︎ 데이터베이스 구조 확인
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/79a4a5c5-f0e2-4894-bf87-2057cc5bf60e/Untitled.png)
+![image](https://user-images.githubusercontent.com/73332608/187168661-5b1c68f2-da0a-42a7-9879-26ecc8aaf59e.png)
 
 # 👩🏻‍💻 기능 구현
 
@@ -319,9 +319,9 @@ export class PriceOfferEntity {
 
 2️⃣ 판매자에게 가격 제안 알림 기능 ()
 
-🅰️ 수락시 - isOfferedPrice = true & price = offeredPrice로 재할당 ()
+  🅰️ 수락시 - isOfferedPrice = true & price = offeredPrice로 재할당 ()
 
-🅱️ 거절시 - nothing ()
+  🅱️ 거절시 - nothing ()
 
 ☑️ 데이터 교환을 위해 만들어준 offerPriceDto 타입으로 인수를 받아온다.
 
@@ -453,4 +453,4 @@ async offerPriceToSeller(@Args('offerPriceDto') offerPriceDto: OfferPriceDto): P
 
 ## GraphQL로 request & response 확인하기
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1d249d76-be05-4517-9e02-be142ed5dee0/Untitled.png)
+![image](https://user-images.githubusercontent.com/73332608/187168754-88192863-9b42-4711-86ed-db16c5d8a9a8.png)
