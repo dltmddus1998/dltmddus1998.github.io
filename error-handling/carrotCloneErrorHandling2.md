@@ -1,11 +1,4 @@
-# Error Handling with 당근마켓 
-
-## GraphQLError: Query root type must be provided
-
-![image](https://user-images.githubusercontent.com/73332608/187089058-fb8c7a3b-7081-4c81-a4cc-deed6c45bf90.png)
-
-> 구글링해본 결과 resolver에서 Query에 대한 코드가 빠져있다고 되어 있는데, 이상한 점은 지금 구현하고 있는 부분이 데이터베이스를 수정해야하는 부분이라 Mutation이 쓰는 것이 맞는데 이렇게 하면 계속 저 에러가 난다.
->
+# Error Handling with 당근마켓 (2) - NestExceptionError
 
 ## NestExceptionError: Nest can't resolve dependencies
 
@@ -82,3 +75,4 @@ imports: [
 이유는 모르겠지만, 다음과 같이 잘 돌아간다. 서버는 —watch로 자동으로 새로고침되도록 해놓았기때문에 서버 재시작의 문제는 아닌듯 하고 잠시 graphql쪽에서 문제가 생겼던 것 같다. 
 
 ![image](https://user-images.githubusercontent.com/73332608/187159540-54c83645-ae3a-46c2-9c30-2f8fd43fbdd2.png)
+
