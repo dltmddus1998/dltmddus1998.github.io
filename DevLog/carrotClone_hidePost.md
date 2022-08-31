@@ -50,4 +50,4 @@ hidePost(@Args('postId', ParseIntPipe) postId: number) {
 
 ## GraphQL 실행 화면
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f286956a-6aa0-4c05-9db1-f6bce45e8950/Untitled.png)
+![image](https://user-images.githubusercontent.com/73332608/187749356-5d4d6d48-1049-4195-965a-55c32f48e7eb.png)
