@@ -239,4 +239,4 @@ export class PostRepository extends Repository<Post> {
 
 ## GraphQL 실행 화면
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/45d423e5-add6-4978-8ca2-f345c080c027/Untitled.png)
+![image](https://user-images.githubusercontent.com/73332608/187600638-ea0ec4c2-f525-4315-b23c-f536a408a3f0.png)
