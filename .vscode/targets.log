@@ -10,11 +10,10 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 make: *** No rule to make target `all'.  Stop.
 
 
-# Make data base, printed on Thu Aug 25 09:14:23 2022
+# Make data base, printed on Wed Aug 31 14:36:49 2022
 
 # Variables
 
- 
 # automatic
 <D = $(patsubst %/,%,$(dir $<))
 # automatic
@@ -86,7 +85,7 @@ VSCODE_CODE_CACHE_PATH = /Users/syl/Library/Application Support/Code/CachedData/
 # environment
 LOGNAME = syl
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # environment
 NVM_CD_FLAGS = -q
 # environment
@@ -114,7 +113,7 @@ USER = syl
 # default
 MAKECMDGOALS := all
 # environment
-TERM_SESSION_ID = w0t0p0:59EDC912-DFB3-4909-8FDB-A5CF89DDBDBD
+TERM_SESSION_ID = w2t0p0:B4FED01F-57E2-4BD4-8E55-1C26DA939CF0
 # makefile (from `Makefile', line 2)
 ALIAS = jekyll-rtd-theme
 # environment
@@ -146,7 +145,7 @@ TERM_PROGRAM_VERSION = 3.4.16
 # environment
 NVM_DIR = /Users/syl/.nvm
 # environment
-XPC_SERVICE_NAME = application.com.microsoft.VSCode.50434818.50434824.47BA3349-B9EB-4A7D-AAF7-2886DB599D69
+XPC_SERVICE_NAME = application.com.microsoft.VSCode.50434818.50434824.4FB98BB3-D0AA-4359-97D9-5A7DE12B9654
 # environment
 LC_TERMINAL_VERSION = 3.4.16
 # environment
@@ -156,7 +155,7 @@ HOMEBREW_PREFIX = /opt/homebrew
 # automatic
 +F = $(notdir $+)
 # environment
-ITERM_SESSION_ID = w0t0p0:59EDC912-DFB3-4909-8FDB-A5CF89DDBDBD
+ITERM_SESSION_ID = w2t0p0:B4FED01F-57E2-4BD4-8E55-1C26DA939CF0
 # environment
 HOMEBREW_REPOSITORY = /opt/homebrew
 # environment
@@ -302,10 +301,10 @@ help:
 # Not a target:
 .DEFAULT:
 #  Implicit rule search has not been done.
+ 
 #  Modification time never checked.
 #  File has not been updated.
 
- 
 clean:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -363,6 +362,6 @@ report:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Thu Aug 25 09:14:23 2022
+# Finished Make data base on Wed Aug 31 14:36:49 2022
 
  
