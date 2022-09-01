@@ -9,13 +9,15 @@
 
 </aside>
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c8d84a89-e5ed-4aa9-9896-021d787a9d2e/Untitled.png)
+![image](https://user-images.githubusercontent.com/73332608/187964522-0ff51533-c093-464b-8607-0b829680bc3d.png)
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/8fe6c740-8fb8-47c0-b03f-3d4e3ec049f7/Untitled.png)
+![image](https://user-images.githubusercontent.com/73332608/187964545-c36bc86e-149d-4c04-89c2-463a9da91bca.png)
 
 ### postsComplaint.entity.ts
 
 ✔︎ **Foreign Key 구현을 위한 다른 테이블들과의 참조 구현**
+
+🔨 **Post 테이블과 참조하는 부분에서 계속해서 타입을 명시하지 않았다는 오류가 나길래 `@Fieled()` 부분에 `type => Post`를 추가했다.**
 
 ```tsx
 import { Field, Int, ObjectType } from '@nestjs/graphql';
@@ -132,4 +134,4 @@ async createPostsComplaint(createPostsComplaintsDto: CreatePostsComplaintsDto): 
 
 ## GraphQL 실행 화면
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b8ea765c-2b5c-4c0b-a401-199f76a24f1f/Untitled.png)
+![image](https://user-images.githubusercontent.com/73332608/187964583-be8ea758-28db-4501-baca-27443e26354a.png)
