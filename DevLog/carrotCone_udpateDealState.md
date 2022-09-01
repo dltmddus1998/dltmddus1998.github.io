@@ -4,6 +4,8 @@
 
 ### dealState.entity.ts
 
+**✔︎Post entity와 참조**
+
 ```tsx
 import { Field, ObjectType } from "@nestjs/graphql";
 import { Post } from "src/posts/post.entity";
@@ -27,7 +29,7 @@ export class DealState extends BaseEntity {
 
 #### dealState static data 삽입 (임시)
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/54f4fa67-80bb-4bba-9ae7-76d187d17834/Untitled.png)
+![image](https://user-images.githubusercontent.com/73332608/187975725-f961963b-78a0-415d-92eb-357d6602b0ae.png)
 
 ## 👩🏻‍💻 구현 방법
 
@@ -95,4 +97,4 @@ updateDealState(@Args('postId', ParseIntPipe) postId: number, @Args('updateDealS
 
 ## GraphQL 실행 화면
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4da758fe-63ef-4ad1-a688-52e95b7c77a6/Untitled.png)
+![image](https://user-images.githubusercontent.com/73332608/187976095-c3ffbb4e-f588-49d2-a8b5-906234d5666c.png)
