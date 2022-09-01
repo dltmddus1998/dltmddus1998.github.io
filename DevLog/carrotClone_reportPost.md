@@ -62,8 +62,9 @@ export class PostsComplaint extends BaseEntity {
 
 1️⃣ PostsComplaints entity에 등록 → `createPostsComplaints.dto.ts` 생성
 
-사용자 참조 부분은 user 관련 구현이 완료된 후 추가적으로 구현할 계획
+☑️ 사용자 참조 부분은 user 관련 구현이 완료된 후 추가적으로 구현할 계획
 
+### DTO 구현
 ```tsx
 import { Field, InputType } from '@nestjs/graphql';
 import { IsBoolean, IsNotEmpty, IsNumber, IsString, Length } from 'class-validator';
@@ -129,6 +130,17 @@ async createPostsComplaint(createPostsComplaintsDto: CreatePostsComplaintsDto): 
     .execute();
 
   return query.raw.insertId;
+}
+```
+
+### post.resolver.ts
+
+```tsx
+// 게시글 신고
+@Mutation(() => PostsComplaint)
+@UsePipes(ValidationPipe)
+async reportPost(@Args('createPostsComplaintDto', ParseFilePipe) createPostsComplaintDto: CreatePostsComplaintsDto): Promise<PostsComplaint> {
+  return await this.postService.reportPost(createPostsComplaintDto);
 }
 ```
 
