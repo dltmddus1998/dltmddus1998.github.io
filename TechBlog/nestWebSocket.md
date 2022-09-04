@@ -24,7 +24,7 @@
 ### 설치
 
 ```tsx
-**$ npm i --save @nestjs/websockets @nestjs/platform-socket.io**
+$ npm i --save @nestjs/websockets @nestjs/platform-socket.io
 ```
 
 ### Gateway
@@ -47,7 +47,7 @@
 
 ✔︎ 현재, 게이트웨이가 현재 수신 대기 중이지만 아직 어느 수신 메시지도 구독하지 않았다.
 
-`**event` 메시지들을 구독하고 정확한 동일 데이터로 유저에게 응답하는 핸들러를 만들어보자.**
+**`event` 메시지들을 구독하고 정확한 동일 데이터로 유저에게 응답하는 핸들러를 만들어보자.**
 
 ```tsx
 // event.gateway.ts
