@@ -1,9 +1,11 @@
-# Purpose
+# Python을 이용하여 로컬에 있는 파일을 S3 Bucket에 업로드하기
+
+## Purpose
 
 > UiPath에서 크롤링 자동화를 이용하여 받아온 csv파일들을 AWS S3의 Bucket에 자동으로 주기적인 업로드를 구현하기 위한 방법을 찾던 중 해당 구현이 바탕이될 수 있을 것 같아 시도하게 됐다.
 > 
 
-# S3 Bucket 생성하기
+## S3 Bucket 생성하기
 
 💡 **AWS S3에서 내가 사용할 Bucket을 생성한 후 해당 Bucket을 활용하면 된다.**
 
