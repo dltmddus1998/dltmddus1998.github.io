@@ -1,4 +1,4 @@
-# Smart Html Elements - Grid <특정 Row 데이터 가져오기>
+# Smart Html Elements - Grid [특정 Row 데이터 가져오기]
 
 ## Vue에서 Smart Html Elements의 Grid를 활용하던 중 생긴 Issue
 
