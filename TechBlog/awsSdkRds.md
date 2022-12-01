@@ -8,8 +8,8 @@
 
   const params = {
     /** input parameters */
-    DBClusterIdentifier: 'practice1',
-    RoleArn: 'arn:aws:iam::345619873383:role/rds-monitoring-role',
+    DBClusterIdentifier: '<cluster명>',
+    RoleArn: 'arn:aws:iam::<account>:role/rds-monitoring-role',
     FeatureName: '', // option
   };
   const command = new AddRoleToDBClusterCommand(params);
@@ -29,22 +29,11 @@
 > 
 
 ```tsx
-export interface AddRoleToDBClusterMessage {
-  /**
-   * <p>The name of the DB cluster to associate the IAM role with.</p>
-   */
-  DBClusterIdentifier: string | undefined;
-  /**
-   * <p>The Amazon Resource Name (ARN) of the IAM role to associate with the Aurora DB
-   *             cluster, for example <code>arn:aws:iam::123456789012:role/AuroraAccessRole</code>.</p>
-   */
-  RoleArn: string | undefined;
-  /**
-   * <p>The name of the feature for the DB cluster that the IAM role is to be associated with.
-   *             For information about supported feature names, see <a>DBEngineVersion</a>.</p>
-   */
-  FeatureName?: string;
-}
+DBClusterIdentifier: string | undefined;
+
+RoleArn: string | undefined;
+
+FeatureName?: string;
 ```
 
 > DBClusterIdentifier은 말 그대로 DB 클러스터명, RoleArn은 해당 역할을 부여할 IAM 계정의 ARN을 의미한다.
@@ -66,52 +55,61 @@ totalRet
 
 ## @aws-sdk/client-rds-data 사용 예시
 
+> @aws-sdk/client-rds-data에서 AddTagsToResourceCommand() 메서드를 사용해보자.
+→ 해당 메서드는 RDS에서 사용되는 태그를 추가해주는 간단한 메서드이다.
+> 
+
+💡 **여기에서 쓰이는 옵션들을 보면 다음과 같다.**
+
 ```tsx
-resourceArn: string | undefined;
-/**
- * <p>The ARN of the secret that enables access to the DB cluster. Enter the database user name and password for the credentials in
- *             the secret.</p>
- *         <p>For information about creating the secret, see <a href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/create_database_secret.html">Create a database secret</a>.</p>
- */
-secretArn: string | undefined;
-/**
- * <p>The SQL statement to run. Don't include a semicolon (;) at the end of the SQL statement.</p>
- */
-sql: string | undefined;
-/**
- * <p>The name of the database.</p>
- */
-database?: string;
-/**
- * <p>The name of the database schema.</p>
- *         <note>
- *             <p>Currently, the <code>schema</code> parameter isn't supported.</p>
- *         </note>
- */
-schema?: string;
-/**
- * <p>The parameter set for the batch operation.</p>
- *         <p>The SQL statement is executed as many times as the number of parameter sets provided.
- *           To execute a SQL statement with no parameters, use one of the following options:</p>
- *         <ul>
- *             <li>
- *                 <p>Specify one or more empty parameter sets.</p>
- *             </li>
- *             <li>
- *                 <p>Use the <code>ExecuteStatement</code> operation instead of the <code>BatchExecuteStatement</code> operation.</p>
- *             </li>
- *          </ul>
- *         <note>
- *             <p>Array parameters are not supported.</p>
- *         </note>
- */
-parameterSets?: SqlParameter[][];
-/**
- * <p>The identifier of a transaction that was started by using the
- *                 <code>BeginTransaction</code> operation. Specify the transaction ID of the
- *             transaction that you want to include the SQL statement in.</p>
- *         <p>If the SQL statement is not part of a transaction, don't set this
- *             parameter.</p>
- */
-transactionId?: string;
+port interface Tag {
+	Key?: string;
+
+	Value? string;
+}
+
+ResourceName: string | undefined;
+
+Tags: Tag[] : undefined;
 ```
+
+> ResourceName은 사용하고자 하는 RDS의 구분 ARN을 의미한다. 
+(AWS 사이트에서 RDS Dashboard를 통해 configuration 탭에서 알 수 있다.)
+> 
+
+> Tags는 추가하고자 하는 태그의 정보를 입력하면 되는데 다로 정의된 Tag타입으로 해당 값을 입력하면 된다.
+> 
+
+✋🏻 **위의 옵션 정보들을 활용하여 다음과 같이 코드를 짜보았다.**
+
+```tsx
+const tagParams = {
+  ResourceName: 'arn:aws:rds:ap-northeast-2:<account>:cluster:<cluster명>',
+  Tags: [{ Key: 'cde', Value: '333' }],
+};
+const result = new AwsRds.AddTagsToResourceCommand(tagParams);
+try {
+  const data = await client.send(result);
+  return data;
+} catch (err) {
+  console.error(err);
+}
+```
+
+> tagParams를 통해 옵션들을 설정하여 result 값을 리턴하면 위에서 리턴했을 때처럼 나오는데, httpStatusCode가 200이면서 다음과 같이 나오면 메서드가 제대로 실행됐다는 것을 의미하는 것 같다.
+> 
+
+```json
+{
+    "$metadata": {
+        "httpStatusCode": 200,
+        "requestId": "f31df5b8-6ddf-44a8-8ffe-78efd6719f95",
+        "attempts": 1,
+        "totalRetryDelay": 0
+    }
+}
+```
+
+💡 **그리고 다음과 같이 태그가 정상적으로 추가됐음을 알 수 있다.**
+
+![image](https://user-images.githubusercontent.com/73332608/204968755-43d31935-9874-4611-8d45-8e35dbc59286.png)
