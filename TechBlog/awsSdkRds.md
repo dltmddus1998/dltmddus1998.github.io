@@ -113,3 +113,247 @@ try {
 💡 **그리고 다음과 같이 태그가 정상적으로 추가됐음을 알 수 있다.**
 
 ![image](https://user-images.githubusercontent.com/73332608/204968755-43d31935-9874-4611-8d45-8e35dbc59286.png)
+
+
+## 🧐 본격적인 활용 시작
+
+> 위에서는 아직 aws-sdk에 대한 파악이 덜됐기 때문에 아무 메서드나 활용해보았는데, 이제 업무에 필요할만한 메서드를 찾아서 예시 코드를 짜보려고 한다.
+> 
+
+💡 **우선, 첫번째로 눈에 보였던 메서드는 `DescribeAccountAttributesCommand` 였다.**
+
+> 해당 메서드는 특정 계정의 RDS 한도에 대한 데이터를 조회하는데 쓰인다.
+> 
+
+> 특히, DBInstances, AuthorizationsPerDBSecurityGroup 등 명칭별로 사용되고 있는 개수(Used)와 한도(Max)를 조회할 수 있다.
+> 
+
+👉🏻 **별다른 옵션 없이 호출만 하면 다음과 같이 결과값을 리턴할 수 있다.**
+
+```json
+{
+  "$metadata": {
+      "httpStatusCode": 200,
+      "requestId": "c12f1377-f735-4e8b-8545-f4a48362692f",
+      "attempts": 1,
+      "totalRetryDelay": 0
+  },
+  "AccountQuotas": [
+    {
+        "AccountQuotaName": "DBInstances",
+        "Used": 1,
+        "Max": 40
+    },
+    {
+        "AccountQuotaName": "ReservedDBInstances",
+        "Used": 0,
+        "Max": 40
+    },
+    {
+        "AccountQuotaName": "AllocatedStorage",
+        "Used": 0,
+        "Max": 100000
+    },
+    {
+        "AccountQuotaName": "DBSecurityGroups",
+        "Used": 0,
+        "Max": 25
+    },
+    {
+        "AccountQuotaName": "AuthorizationsPerDBSecurityGroup",
+        "Used": 0,
+        "Max": 20
+    },
+    {
+        "AccountQuotaName": "DBParameterGroups",
+        "Used": 0,
+        "Max": 50
+    },
+    {
+        "AccountQuotaName": "ManualSnapshots",
+        "Used": 3,
+        "Max": 100
+    },
+    {
+        "AccountQuotaName": "ManualClusterSnapshots",
+        "Used": 0,
+        "Max": 100
+    },
+    {
+        "AccountQuotaName": "EventSubscriptions",
+        "Used": 0,
+        "Max": 20
+    },
+    {
+        "AccountQuotaName": "DBSubnetGroups",
+        "Used": 3,
+        "Max": 50
+    },
+    {
+        "AccountQuotaName": "OptionGroups",
+        "Used": 0,
+        "Max": 20
+    },
+    {
+        "AccountQuotaName": "SubnetsPerDBSubnetGroup",
+        "Used": 6,
+        "Max": 20
+    },
+    {
+        "AccountQuotaName": "ReadReplicasPerMaster",
+        "Used": 0,
+        "Max": 15
+    },
+    {
+        "AccountQuotaName": "DBInstanceRoles",
+        "Used": 0,
+        "Max": 5
+    },
+    {
+        "AccountQuotaName": "DBClusters",
+        "Used": 1,
+        "Max": 40
+    },
+    {
+        "AccountQuotaName": "DBClusterParameterGroups",
+        "Used": 0,
+        "Max": 50
+    },
+    {
+        "AccountQuotaName": "CustomEndpointsPerDBCluster",
+        "Used": 0,
+        "Max": 5
+    },
+    {
+        "AccountQuotaName": "DBClusterRoles",
+        "Used": 1,
+        "Max": 5
+    }
+  ]
+}
+```
+
+💡 **두 번째로 눈에 보였던 메서드는 `DescribeDBInstancesCommand`였다.**
+
+> 제공된 RDS 인스턴스에 대한 정보를 조회할 수 있다. 
+또한 그래프DB인 Amazon Neptune DB와 문서DB인 Amazon DocumentDB도 지원한다.
+> 
+
+> 결과값을 보면 알겠지만 해당 DB 인스턴스에 대한 거의 모든 정보들이 출력되는 것을 알 수 있다. 
+아마 이 메서드를 사용하면 웬만한 데이터는 추출할 수 있을 것 같다.
+> 
+
+```json
+{
+  "$metadata": {
+      "httpStatusCode": 200,
+      "requestId": "c3c1b420-1690-4f5e-8cd4-7b06267c9b2c",
+      "attempts": 1,
+      "totalRetryDelay": 0
+  },
+  "DBInstances": [
+      {
+        "DBInstanceIdentifier": "practice1-instance-1",
+        "DBInstanceClass": "db.r6g.large",
+        "Engine": "aurora-mysql",
+        "DBInstanceStatus": "stopped",
+        "AutomaticRestartTime": "2022-12-08T05:29:58.882Z",
+        "MasterUsername": "admin",
+        "Endpoint": {
+            "Address": "practice1-instance-1.ci53bfe6r3ut.ap-northeast-2.rds.amazonaws.com",
+            "Port": 3306,
+            "HostedZoneId": "ZLA2NUCOLGUUR"
+        },
+        "AllocatedStorage": 1,
+        "InstanceCreateTime": "2022-11-30T05:35:58.226Z",
+        "PreferredBackupWindow": "19:28-19:58",
+        "BackupRetentionPeriod": 1,
+        "DBSecurityGroups": [],
+        "VpcSecurityGroups": [
+            {
+                "VpcSecurityGroupId": "sg-014e8790938b5137a",
+                "Status": "active"
+            }
+        ],
+        "DBParameterGroups": [
+            {
+                "DBParameterGroupName": "default.aurora-mysql8.0",
+                "ParameterApplyStatus": "in-sync"
+            }
+        ],
+        "AvailabilityZone": "ap-northeast-2b",
+        "DBSubnetGroup": {
+            "DBSubnetGroupName": "default-vpc-0e725e8ab6a98e92a",
+            "DBSubnetGroupDescription": "Created from the RDS Management Console",
+            "VpcId": "vpc-0e725e8ab6a98e92a",
+            "SubnetGroupStatus": "Complete",
+            "Subnets": [
+                {
+                    "SubnetIdentifier": "subnet-069f307ef9a2cfc1a",
+                    "SubnetAvailabilityZone": {
+                        "Name": "ap-northeast-2b"
+                    },
+                    "SubnetOutpost": {},
+                    "SubnetStatus": "Active"
+                },
+                {
+                    "SubnetIdentifier": "subnet-056823e913508f20b",
+                    "SubnetAvailabilityZone": {
+                        "Name": "ap-northeast-2a"
+                    },
+                    "SubnetOutpost": {},
+                    "SubnetStatus": "Active"
+                },
+                {
+                    "SubnetIdentifier": "subnet-08e9037dc114a995d",
+                    "SubnetAvailabilityZone": {
+                        "Name": "ap-northeast-2b"
+                    },
+                    "SubnetOutpost": {},
+                    "SubnetStatus": "Active"
+                }
+            ]
+        },
+        "PreferredMaintenanceWindow": "thu:16:17-thu:16:47",
+        "PendingModifiedValues": {},
+        "MultiAZ": false,
+        "EngineVersion": "8.0.mysql_aurora.3.02.0",
+        "AutoMinorVersionUpgrade": true,
+        "ReadReplicaDBInstanceIdentifiers": [],
+        "LicenseModel": "general-public-license",
+        "OptionGroupMemberships": [
+            {
+                "OptionGroupName": "default:aurora-mysql-8-0",
+                "Status": "in-sync"
+            }
+        ],
+        "PubliclyAccessible": false,
+        "StorageType": "aurora",
+        "DbInstancePort": 0,
+        "DBClusterIdentifier": "practice1",
+        "StorageEncrypted": true,
+        "KmsKeyId": "arn:aws:kms:ap-northeast-2:345619873383:key/37c75b15-b914-4218-9edc-a73558b3a5a9",
+        "DbiResourceId": "db-IPX5EOQASUQUR7D6WHICSDRX6U",
+        "CACertificateIdentifier": "rds-ca-2019",
+        "DomainMemberships": [],
+        "CopyTagsToSnapshot": false,
+        "MonitoringInterval": 60,
+        "EnhancedMonitoringResourceArn": "arn:aws:logs:ap-northeast-2:345619873383:log-group:RDSOSMetrics:log-stream:db-IPX5EOQASUQUR7D6WHICSDRX6U",
+        "MonitoringRoleArn": "arn:aws:iam::345619873383:role/rds-monitoring-role",
+        "PromotionTier": 1,
+        "DBInstanceArn": "arn:aws:rds:ap-northeast-2:345619873383:db:practice1-instance-1",
+        "IAMDatabaseAuthenticationEnabled": false,
+        "PerformanceInsightsEnabled": true,
+        "PerformanceInsightsKMSKeyId": "arn:aws:kms:ap-northeast-2:345619873383:key/37c75b15-b914-4218-9edc-a73558b3a5a9",
+        "PerformanceInsightsRetentionPeriod": 7,
+        "DeletionProtection": false,
+        "AssociatedRoles": [],
+        "TagList": [],
+        "CustomerOwnedIpEnabled": false,
+        "BackupTarget": "region",
+        "NetworkType": "IPV4",
+        "StorageThroughput": 0
+    }
+  ]
+}
+```
