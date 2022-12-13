@@ -1,6 +1,6 @@
 # Json 파일의 데이터 가공 (JavaScript) [부제: reduce]
 
-> [https://dltmddus1998.github.io/DevLog/mongoshellDummy.html](https://dltmddus1998.github.io/DevLog/mongoshellDummy.html)에서 daily 데이터를 1년치를 추출했는데 이 데이터를 바탕으로 평균치를 내서 weekly 데이터를 추출하려했다.
+> [Mongo Shell을 통해 더미데이터 생성하기 (랜덤한 값 넣기)](https://dltmddus1998.github.io/DevLog/mongoshellDummy.html)에서 daily 데이터를 1년치를 추출했는데 이 데이터를 바탕으로 평균치를 내서 weekly 데이터를 추출하려했다.
 > 
 
 > 처음에는 단순히 forEach 함수를 활용해서 Json파일에서 depth가 깊은 값을 가져오려 했는데 데이터 양이 방대하기도 하고 depth가 깊어 복잡했기 때문에 잘 되지 않았다.
