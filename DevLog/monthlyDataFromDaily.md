@@ -72,35 +72,14 @@ monthlyData.push(dec);
 > 
 
 ```jsx
-let arr = [];
-let result;
-
-monthlyData.forEach((monthlyData) => {
-  if (monthlyData.length) {
-    result = monthlyData.reduce((a, c) => {
-      c.dailyEC2Stats.forEach((eachData) => {
-        if (eachData.region in a) {
-          a[eachData.region] = {
-            countTotalEC2: a[eachData.region].countTotalEC2 + eachData.countTotalEC2,
-            countUnmanagedEC2: a[eachData.region].countUnmanagedEC2 + eachData.countUnmanagedEC2,
-            countUnallowedSpec: a[eachData.region].countUnallowedSpec + eachData.countUnallowedSpec,
-          };
-        } else {
-          a[eachData.region] = {
-            countTotalEC2: eachData.countTotalEC2,
-            countUnmanagedEC2: eachData.countUnmanagedEC2,
-            countUnallowedSpec: eachData.countUnallowedSpec,
-          };
-        }
-      });
-      return a;
-    }, {});
-    arr.push(result);
-  }
-});
-
 let resultArr = [];
 arr.forEach((data, idx) => {
+  let dataObj = { // 1️⃣
+    datas: {
+      timestamp: '',
+      monthlyEC2Stats: [],
+    },
+  };
   const obj = Object.entries(data).map(([key, value]) => {
     // 1월, 3월, 5월, 7월, 8월, 10월, 12월
     if (idx === 0 || idx === 2 || idx === 4 || idx === 6 || idx === 7 || idx === 9 || idx === 11) {
@@ -127,11 +106,11 @@ arr.forEach((data, idx) => {
       };
     }
   });
-  resultArr.push(obj);
+  dataObj['datas']['monthlyEC2Stats'].push(...obj);
+  resultArr.push(dataObj);
 });
-
 resultArr.map((result, idx) => { // 2️⃣
-  result.unshift({ month: `${idx + 1}월` });
+  result['datas']['timestamp'] = `${idx + 1}월`;
 });
 const file = 'monthly_stats_ec2_datas_v1.json';
 fs.writeFile(file, JSON.stringify(resultArr), (err) => {
@@ -142,6 +121,9 @@ fs.writeFile(file, JSON.stringify(resultArr), (err) => {
 > weekly 데이터 때와 동일하게 reduce를 통해 누적값으로 합을 구한 후 Object.entries()를 활용하여 객체 모양을 다듬어주면서 평균값을 주었는데 위에서 보여준바와 같이 31일인 달, 2월, 30일인 달 이 세 경우를 모두 나눠서 평균값을 내주었다.
 > 
 
+> 1️⃣ gold 데이터 방식으로 mongodb에 넣기 위해 datas로 각각의 데이터를 감싸는 형태로 만든 후 해당 데이터들을 resultArr라는 배열에 push했다.
+> 
+
 > 이후 몇월인지 좀더 명시적으로 표시해주기 위해 2️⃣와 같이 구현했다.
 > 
 
@@ -149,24 +131,32 @@ fs.writeFile(file, JSON.stringify(resultArr), (err) => {
 
 ```json
 [
-	[
-    { "month": "1월" },
-    { "region": "ap-northeast-2", "AvgOfCountTotalEC2": 64, "AvgOfCountUnmanagedEC2": 33, "AvgOfCountUnallowedSpec": 3 },
-    { "region": "us-east-1", "AvgOfCountTotalEC2": 85, "AvgOfCountUnmanagedEC2": 42, "AvgOfCountUnallowedSpec": 4 },
-    { "region": "ap-northeast-3", "AvgOfCountTotalEC2": 98, "AvgOfCountUnmanagedEC2": 49, "AvgOfCountUnallowedSpec": 5 },
-    { "region": "ap-northeast-1", "AvgOfCountTotalEC2": 106, "AvgOfCountUnmanagedEC2": 51, "AvgOfCountUnallowedSpec": 5 },
-    { "region": "sa-east-1", "AvgOfCountTotalEC2": 108, "AvgOfCountUnmanagedEC2": 41, "AvgOfCountUnallowedSpec": 4 }
-  ],
+	{
+    "datas": {
+      "timestamp": "1월",
+      "monthlyEC2Stats": [
+        { "region": "ap-northeast-2", "AvgOfCountTotalEC2": 64, "AvgOfCountUnmanagedEC2": 33, "AvgOfCountUnallowedSpec": 3 },
+        { "region": "us-east-1", "AvgOfCountTotalEC2": 85, "AvgOfCountUnmanagedEC2": 42, "AvgOfCountUnallowedSpec": 4 },
+        { "region": "ap-northeast-3", "AvgOfCountTotalEC2": 98, "AvgOfCountUnmanagedEC2": 49, "AvgOfCountUnallowedSpec": 5 },
+        { "region": "ap-northeast-1", "AvgOfCountTotalEC2": 106, "AvgOfCountUnmanagedEC2": 51, "AvgOfCountUnallowedSpec": 5 },
+        { "region": "sa-east-1", "AvgOfCountTotalEC2": 108, "AvgOfCountUnmanagedEC2": 41, "AvgOfCountUnallowedSpec": 4 }
+      ]
+    }
+  },
 	.
 	.
 	.
-	[
-    { "month": "12월" },
-    { "region": "ap-northeast-2", "AvgOfCountTotalEC2": 70, "AvgOfCountUnmanagedEC2": 32, "AvgOfCountUnallowedSpec": 3 },
-    { "region": "us-east-1", "AvgOfCountTotalEC2": 92, "AvgOfCountUnmanagedEC2": 47, "AvgOfCountUnallowedSpec": 6 },
-    { "region": "ap-northeast-3", "AvgOfCountTotalEC2": 104, "AvgOfCountUnmanagedEC2": 48, "AvgOfCountUnallowedSpec": 4 },
-    { "region": "ap-northeast-1", "AvgOfCountTotalEC2": 114, "AvgOfCountUnmanagedEC2": 49, "AvgOfCountUnallowedSpec": 4 },
-    { "region": "sa-east-1", "AvgOfCountTotalEC2": 114, "AvgOfCountUnmanagedEC2": 55, "AvgOfCountUnallowedSpec": 4 }
-  ]
+	{
+    "datas": {
+      "timestamp": "12월",
+      "monthlyEC2Stats": [
+        { "region": "ap-northeast-2", "AvgOfCountTotalEC2": 70, "AvgOfCountUnmanagedEC2": 32, "AvgOfCountUnallowedSpec": 3 },
+        { "region": "us-east-1", "AvgOfCountTotalEC2": 92, "AvgOfCountUnmanagedEC2": 47, "AvgOfCountUnallowedSpec": 6 },
+        { "region": "ap-northeast-3", "AvgOfCountTotalEC2": 104, "AvgOfCountUnmanagedEC2": 48, "AvgOfCountUnallowedSpec": 4 },
+        { "region": "ap-northeast-1", "AvgOfCountTotalEC2": 114, "AvgOfCountUnmanagedEC2": 49, "AvgOfCountUnallowedSpec": 4 },
+        { "region": "sa-east-1", "AvgOfCountTotalEC2": 114, "AvgOfCountUnmanagedEC2": 55, "AvgOfCountUnallowedSpec": 4 }
+      ]
+    }
+  }
 ]
 ```
