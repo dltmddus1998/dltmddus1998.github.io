@@ -124,6 +124,7 @@ fs.writeFile(file, JSON.stringify(resultArr), (err) => {
 > 1️⃣ gold 데이터 방식으로 mongodb에 넣기 위해 datas로 각각의 데이터를 감싸는 형태로 만든 후 해당 데이터들을 resultArr라는 배열에 push했다.
 > 
 
+
 > 이후 몇월인지 좀더 명시적으로 표시해주기 위해 2️⃣와 같이 구현했다.
 > 
 
