@@ -1,4 +1,4 @@
-# 🧐 달력에서 연속 15일간의 데이터만 뽑아서 보여주는 API를 만들어
+# 🧐 달력에서 연속 15일간의 데이터만 뽑아서 보여주는 API를 만들어보자
 
 ```tsx
 public async findDailyTrend({
