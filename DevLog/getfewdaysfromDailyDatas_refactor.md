@@ -5,7 +5,7 @@
 > [달력에서 연속 15일간의 데이터만 뽑아서 보여주는 API 만들기](https://dltmddus1998.github.io/DevLog/getfewdaysfromDailyDatas.html)에서 구현한 API에서 몇가지 문제점을 발견해서 리팩토링을 진행했다.
 > 
 
-## 🗑 원래 코드
+## 🗑 원래 코드 👉🏻
 
 ```tsx
 public async findDailyTrend({
