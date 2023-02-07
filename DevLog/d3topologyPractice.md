@@ -145,6 +145,96 @@ function dragged(d) {
 
 🤪 그런데도 끝끝내 도형을 연결해주는 선이 안보이더라. d3.event.x를 따로 할당해주었는데도 그러면 뭐가 문제일까… 계속 부분적으로 코드만 고치다가는 해결을 못할 것 같아서 아예 새로 코드를 작성해봤다. (HTML&CSS 파일은 중요한 부분이 아니니 생략하겠다.)
 
-```jsx
 
+### 최종 코드
+
+```jsx
+// Set up the data for the nodes and links
+const nodes = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }];
+const links = [
+  { source: 1, target: 2 },
+  { source: 2, target: 3 },
+  { source: 3, target: 4 },
+  { source: 4, target: 5 },
+];
+
+const updatedNodes = [
+  { id: 1, x: 100, y: 200 },
+  { id: 2, x: 150, y: 150 },
+  { id: 3, x: 200, y: 100 },
+  { id: 4, x: 250, y: 150 },
+  { id: 5, x: 300, y: 200 },
+];
+
+const updatedLinks = [
+  { source: updatedNodes[0], target: updatedNodes[1] },
+  { source: updatedNodes[1], target: updatedNodes[2] },
+  { source: updatedNodes[2], target: updatedNodes[3] },
+  { source: updatedNodes[3], target: updatedNodes[4] },
+];
+
+// Create the SVG element
+const svg = d3.select("body").append("svg").attr("width", 1000).attr("height", 1000);
+
+const node = svg.selectAll("circle").data(updatedNodes);
+
+node
+  .enter()
+  .append("circle")
+  .merge(node)
+  .attr("r", 20)
+  .style("fill", "lightblue")
+  .attr("cx", (d) => d.x)
+  .attr("cy", (d) => d.y)
+  .call(d3.drag().on("start", dragStarted).on("drag", dragging).on("end", dragEnded));
+
+node.exit().remove();
+
+const link = svg.selectAll("line").data(updatedLinks);
+
+link
+  .enter()
+  .append("line")
+  .merge(link)
+  .style("stroke", "black")
+  .style("stroke-width", 2)
+  .attr("x1", (d) => d.source.x)
+  .attr("y1", (d) => d.source.y)
+  .attr("x2", (d) => d.target.x)
+  .attr("y2", (d) => d.target.y);
+
+link.exit().remove();
+
+// Define the drag behavior for the nodes
+function dragStarted(d) {
+  d3.select(this).raise();
+}
+
+function dragging(d) {
+  d.x = d3.event.x;
+  d.y = d3.event.y;
+
+  d3.select(this).attr("cx", d.x).attr("cy", d.y);
+
+  link
+    .filter((l) => l.source === d || l.target === d)
+    .attr("x1", (l) => l.source.x)
+    .attr("y1", (l) => l.source.y)
+    .attr("x2", (l) => l.target.x)
+    .attr("y2", (l) => l.target.y);
+}
+
+function dragEnded(d) {
+  d.x = d3.event.x;
+  d.y = d3.event.y;
+
+  d3.select(this).attr("cx", d.x).attr("cy", d.y);
+
+  link
+    .filter((l) => l.source === d || l.target === d)
+    .attr("x1", (l) => l.source.x)
+    .attr("y1", (l) => l.source.y)
+    .attr("x2", (l) => l.target.x)
+    .attr("y2", (l) => l.target.y);
+}
 ```
