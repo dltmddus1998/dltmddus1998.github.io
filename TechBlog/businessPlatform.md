@@ -1,5 +1,7 @@
 # 비즈니스 플랫폼 (Business Platform) - ing
 
+[🔗 github link](https://github.com/dltmddus1998/dltmddus1998.github.io/blob/main/TechBlog/businessPlatform.md)
+
 ## 비즈니스 플랫폼이란?
 
 > *A **business platform** refers to a **technology-based system** that enables companies to manage various aspects of their operations, such as **marketing**, **sales**, **customer service**, and **supply chain management**. It can be used to streamline and automate processes, manage customer relationships, and provide insights into business performance. Examples of business platforms include CRM software, e-commerce platforms, and enterprise resource planning systems.*
