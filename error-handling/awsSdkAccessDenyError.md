@@ -27,3 +27,15 @@ Error: User: arn:aws:iam::xxxx:user/xxxx is not authorized to perform: sts:Assum
     ]
 }
 ```
+
+## 그러나 여전히 같은 에러
+😩 **그런데, 이렇게 했는데도 저 에러가 사라지지 않는다…**
+
+🧐 **무엇이 문제일지 리서치해본 결과…**
+
+<aside>
+⚡ 이부분은 해결할수 없을 것 같다.
+
+</aside>
+
+→ 왜냐하면 지금 해당 계정에 AdministratorAccess라고 관리자 계정으로서의 Permission Policy를 추가해줬는데도 에러가 없어지지 않기때문에 사용할 수 없는 라이브러리 인 것으로 판단했고 다른 방법을 찾아봐야 할 것 같다.
