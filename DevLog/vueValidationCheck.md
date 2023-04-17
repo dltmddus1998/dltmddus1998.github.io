@@ -40,7 +40,7 @@ const validateEmail = (email: string) => {
 > 정규표현식에 맞는 이메일 형식에 따르지 않는 경우 다음과 같은 css 처리가 자동으로 된다.
 > 
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/270a9197-503b-4e09-ab13-f27566d686e0/Untitled.png)
+![image](https://user-images.githubusercontent.com/73332608/232436986-9a9d26d9-d47b-4f31-afe0-ac74d564bd1e.png)
 
 ### Reference
 
