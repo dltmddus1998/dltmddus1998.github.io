@@ -34,7 +34,7 @@
 > 구현하려는 Progress Bar는 아래 그림과 같은 타임라인 형식이다.
 > 
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/323e6ea6-e703-47a8-9863-c7f85b7352f5/Untitled.png)
+![image](https://user-images.githubusercontent.com/73332608/233573151-43405116-8779-4604-8a91-fad84310b638.png)
 
 일단 감이 안잡혀서 코드펜이나 코드샌드박스에서 서치해봤는데 비슷한 것 조차도 나오지 않았다… 나오더라도 유저가 액션을 취해야 다음으로 넘어가는 타임라인 애니메이션만 존재했다.
 
@@ -119,7 +119,7 @@ onMounted(() => {
 
 어쨌든 위와 같이 구현하면 아래와 같은 결과물이 나온다.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b728d2d3-696b-46a9-8b95-390f1f5033e2/Untitled.png)
+![image](https://user-images.githubusercontent.com/73332608/233573182-8bed4ab7-ff3f-4597-a8ea-a39189793082.png)
 
 → 캡쳐본이지만 애니메이션이 잘 구현된다. 하얀색이 점차 내려오는 형태의 bar progress가 구현됐다.
 
