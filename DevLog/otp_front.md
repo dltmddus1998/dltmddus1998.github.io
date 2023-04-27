@@ -26,4 +26,76 @@ Vue3 Script setup 버전에서 OTP 인증을 구현해보겠다.
 > 
 
 > 한시간 가량 서치해본 결과 코드가 제대로 작동하지 않은 두 가지 이유가 있었는데, 먼저 예외처리를 제대로 안했기 때문에 에러의 직접적인 원인을 알 수 없었고 그랬기 때문에 buffer 관련 처리가 되지 않아 에러가 났다는 것도 모를 수 밖에 없었다. (즉, 예외처리만 제대로 했었어도 금방 끝냈을 일이라는 뜻…)
->
+
+
+위 과정들을 거치고 바로 아래 코드가 나왔다. (아직은 제대로 구현되지 않았지만 어느정도 구색은 갖췄다.)
+
+```html
+<!-- quasar활용 (q-img) -->
+<q-img
+  class="otp-tab-desc__qr"
+  id="qrImg"
+  :src="qrCodeImg"
+  :to="{ name: 'SettingPassword' }"
+/>
+```
+
+```tsx
+const isValidBase32 = (str: string): boolean => {
+  const regex = /^[A-Z2-7]+=*$/;
+  return regex.test(str);
+};
+
+const base32Decode = (str: string) => {
+  const decoded = decode(str);
+  if (!isValidBase32(str)) {
+    throw new Error('Invalid base32 characters');
+  }
+  try {
+    return buffer.Buffer.from(decoded);
+  } catch (error) {
+    console.error(`error = `, error);
+    throw new Error('Invalid base32 characters');
+  }
+};
+
+onMounted(() => {
+  QRCode.toDataURL(
+    otplib.authenticator.keyuri(registStore.email, registStore.username, secret.value),
+    (error, url) => {
+      if (error) {
+        console.error(`error = `, error);
+      } else {
+        qrCodeImg.value = url;
+      }
+    }
+  );
+});
+
+const authenticate = () => {
+  const decodedSecret = base32Decode(secret.value);
+  console.log(new TextDecoder().decode(decodedSecret));
+  try {
+    const isValid = otplib.authenticator.verify({
+      token: authenticatorCode.value,
+      secret: new TextDecoder().decode(decodedSecret),
+    });
+    console.log(isValid);
+    if (isValid) {
+      alert('say yeah!!!');
+    } else {
+      throw new Error('Invalid Decoded Secretdsafjskldf');
+    }
+  } catch (error) {
+    console.error(`error = `, error);
+  }
+}
+```
+
+## Reference
+
+[chat GPT](https://chat.openai.com/)
+
+## 오늘의 결론
+
+‼️ **예외 처리를 습관화하자.**
