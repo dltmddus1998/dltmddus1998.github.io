@@ -85,37 +85,38 @@ Nginx는 가변적인 변화들에 대해 알린다.
 
 [Detect Mobile User Agent in Nginx](https://medium.com/geekculture/detect-mobile-user-agent-in-nginx-806a43f5782a)
 
-## 실제 .conf 설정 (연습용)
+## 실제 .conf 설정 코드
 
 ```
 server {
-        listen 80;
+  listen 80;
 
-        location / {
-                proxy_pass http://127.0.0.1:8000;
-                proxy_set_header Host $host;
-                proxy_set_header X-Real-IP $remote_addr;
-        }
+  location / {
+          proxy_pass http://127.0.0.1:8000;
+          proxy_set_header Host $host;
+          proxy_set_header X-Real-IP $remote_addr;
+  }
 }
 
 server {
-        listen 80;
-        server_name xxxx;
+  listen 80;
+  server_name [site name];
 
-        set $mobile_rewrite do_not_perform;
 
-         if ($http_user_agent ~* "(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino") {
-                set $mobile_rewrite perform;
-        }
+  set $mobile_rewrite do_not_perform;
 
-        if ($mobile_rewrite = perform) {
-                rewrite ^ https://google.com$request_uri redirect;
-                break;
-        }
+   if ($http_user_agent ~* "(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino") {
+          set $mobile_rewrite perform;
+  }
 
-        if ($mobile_rewrite = do_not_perform) {
-                rewrite ^ https://naver.com$request_uri redirect;
-                break;
-        }
+  if ($mobile_rewrite = perform) { 디스플레이 크기가 모바일일 경우
+          rewrite ^ https://m.$server_name$request_uri redirect;
+          break;
+  }
+
+  if ($mobile_rewrite = do_not_perform) { 디스플레이 크기가 웹일 경우
+          rewrite ^ https://$server_name$request_uri redirect;
+          break;
+  }
 }
 ```
