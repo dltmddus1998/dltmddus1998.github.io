@@ -89,34 +89,63 @@ Nginx는 가변적인 변화들에 대해 알린다.
 
 ```
 server {
-  listen 80;
+    listen 80;
 
-  location / {
-          proxy_pass http://127.0.0.1:8000;
-          proxy_set_header Host $host;
-          proxy_set_header X-Real-IP $remote_addr;
-  }
+    set $mobile_rewrite do_not_perform;
+
+    if ($http_user_agent ~* "(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino") {
+        set $mobile_rewrite perform;
+    }
+
+    if ($mobile_rewrite = perform) { // 모바일 인식할 경우 m.xxx.site redirect
+        rewrite ^ https://m.xxx.site$request_uri redirect;
+        break;
+    }
+
+    location / {
+        proxy_pass http://127.0.0.1:8000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
 }
 
 server {
-  listen 80;
-  server_name [site name];
+    listen 80;
+    server_name [domain name];
 
+    return 301 https://www.hybrix.site$request_uri;
+}
 
-  set $mobile_rewrite do_not_perform;
+server {
+    listen 80;
+    server_name m.xxx.site;
 
-   if ($http_user_agent ~* "(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino") {
-          set $mobile_rewrite perform;
-  }
+    location / {
+        proxy_pass http://127.0.0.1:8001;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}
 
-  if ($mobile_rewrite = perform) { 디스플레이 크기가 모바일일 경우
-          rewrite ^ https://m.$server_name$request_uri redirect;
-          break;
-  }
+server {
+    listen 80;
+    server_name console.xxx.site;
 
-  if ($mobile_rewrite = do_not_perform) { 디스플레이 크기가 웹일 경우
-          rewrite ^ https://$server_name$request_uri redirect;
-          break;
-  }
+    location / {
+        proxy_pass http://127.0.0.1:8010;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}
+
+server {
+    listen 80;
+    server_name provider.xxx.site;
+
+    location / {
+        proxy_pass http://127.0.0.1:8888;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
 }
 ```
