@@ -23,7 +23,13 @@
 
 ## 기본 라이브러리 설치
 
-1. nvm 설치
+1. host name 설정
+    
+    ```
+    > hostnamectl set-hostname zerotrust-frontA
+    ```
+    
+2. nvm 설치
     
     ```
     > curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
@@ -33,13 +39,13 @@
     > nvm install node
     ```
     
-2. git 설치
+3. git 설치
     
     ```
     > yum install -y git
     ```
     
-3. docker 설치
+4. docker 설치
     
     ```
     > yum install docker
@@ -51,7 +57,7 @@
     > docker run -d --name rabbitmq -p 5672:5672 -p 8080:15672 --restart=unless-stopped rabbitmq
     ```
     
-4. build 및 pm2 실행
+5. build 및 pm2 실행
     
     ```
     > pnpm run build:all
