@@ -11,4 +11,4 @@
     
     해당 인증서는 cloudflare에서 Origin Server를 통해 발급할 수 있다.
     
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a1fbd910-852a-419d-8d1f-0397a38d1ce0/Untitled.png)
+![image](https://github.com/dltmddus1998/dltmddus1998.github.io/assets/73332608/f656428e-2137-4401-809a-0622b674023e)
