@@ -103,7 +103,7 @@ server {
     }
 
     location / {
-        proxy_pass http://127.0.0.1:8000;
+        proxy_pass http://127.0.0.1:xxx;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
     }
@@ -113,7 +113,7 @@ server {
     listen 80;
     server_name [domain name];
 
-    return 301 https://www.hybrix.site$request_uri;
+    return 301 https://www.xxx.site$request_uri;
 }
 
 server {
@@ -121,7 +121,7 @@ server {
     server_name m.xxx.site;
 
     location / {
-        proxy_pass http://127.0.0.1:8001;
+        proxy_pass http://127.0.0.1:xxx;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
     }
@@ -132,7 +132,7 @@ server {
     server_name console.xxx.site;
 
     location / {
-        proxy_pass http://127.0.0.1:8010;
+        proxy_pass http://127.0.0.1:xxx;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
     }
@@ -143,7 +143,7 @@ server {
     server_name provider.xxx.site;
 
     location / {
-        proxy_pass http://127.0.0.1:8888;
+        proxy_pass http://127.0.0.1:xxx;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
     }
