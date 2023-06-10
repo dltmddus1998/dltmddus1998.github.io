@@ -99,7 +99,7 @@ ex) rds
 > 서비스형 소프트웨어, 특정 앱 또는 웹 포털을 통해 제공되는 서비스 (완전한 SW Solution)
 > 
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/32a615e9-5c2f-49f7-a7c5-a22aec91fb83/Untitled.png)
+![image](https://github.com/dltmddus1998/dltmddus1998.github.io/assets/73332608/bd0f4266-0ae5-47a5-ab1c-ba34a4304aa5)
 
 ## 기존 인프라와 차이점
 
