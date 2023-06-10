@@ -14,5 +14,6 @@ echo "    theme     Make theme as gem and install"
 echo "    build     Build the test site"
 echo "    server    Make a livereload jekyll server to development"
 echo "    checkout  Reset the theme minified css and script to last commit"
+ 
 make: Leaving directory `/Users/syl/Desktop/gitRepo/dltmddus1998.github.io'
  
