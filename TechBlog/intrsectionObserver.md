@@ -57,7 +57,7 @@ let observer = new IntersectionObserver(callback, options)
 
 `rootMargin`
 
-root 가 가진 여백이다. 이 속성의 값은 CSS의 `[margin](https://developer.mozilla.org/ko/docs/Web/CSS/margin)` 속성과 유사하다. e.g. "`10px 20px 30px 40px"` (top, right, bottom, left). 이 값은 퍼센티지가 될 수 있다. 이것은 root 요소의 각 측면의 bounding box를 수축시키거나 증가시키며, 교차성을 계산하기 전에 적용된다. 기본값은 0이다.
+root 가 가진 여백이다. 이 속성의 값은 CSS의 `[margin](https://developer.mozilla.org/ko/docs/Web/CSS/margin)` 속성과 유사하다. e.g. "`10px 20px 30px 40px"` (top, right, bottom, left). 해당 값은 퍼센티지가 될 수 있다. 이것은 root 요소의 각 측면의 bounding box를 수축시키거나 증가시키며, 교차성을 계산하기 전에 적용된다. 기본값은 0이다.
 
 `threshold`
 
