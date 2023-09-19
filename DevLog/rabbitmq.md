@@ -1,5 +1,3 @@
-[Documentation | NestJS - A progressive Node.js framework](https://docs.nestjs.com/microservices/rabbitmq#rabbitmq)
-
 ***RabbitMQ***는 **분산 시스템에서 메시지 지향 미들웨어를 구현**하는 데 자주 사용되는 메시지 브로커이다.
 
 ## 실습
