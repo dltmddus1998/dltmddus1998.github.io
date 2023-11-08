@@ -17,10 +17,10 @@
 
 ### svg animation - 같은 코드 적용시 차이점
 
-![Jtopo 데모사이트 화면 - 애니메이션 적용 o](https://prod-files-secure.s3.us-west-2.amazonaws.com/793761ee-1da2-4c3c-8209-ce8f1147ec2d/ea7fc0de-984b-4e2c-9397-3dca9a0c75cd/Untitled.png)
+#### Jtopo 데모사이트 화면 - 애니메이션 적용 o
+![image](https://github.com/dltmddus1998/dltmddus1998.github.io/assets/73332608/c1e3ea82-c8c6-495e-b41b-49715e3c3133)
 
-Jtopo 데모사이트 화면 - 애니메이션 적용 o
 
-![iZero 테스트 화면 - 애니메이션 적용x](https://prod-files-secure.s3.us-west-2.amazonaws.com/793761ee-1da2-4c3c-8209-ce8f1147ec2d/fc54dfc8-6b7f-4ffe-b1fe-aacd39566a12/Untitled.png)
+#### iZero 테스트 화면 - 애니메이션 적용x
+![image](https://github.com/dltmddus1998/dltmddus1998.github.io/assets/73332608/b724ec3c-b04c-4d46-b637-d14092207bfe)
 
-iZero 테스트 화면 - 애니메이션 적용x
