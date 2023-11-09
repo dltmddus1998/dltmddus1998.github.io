@@ -24,3 +24,15 @@
 #### iZero 테스트 화면 - 애니메이션 적용x
 ![image](https://github.com/dltmddus1998/dltmddus1998.github.io/assets/73332608/b724ec3c-b04c-4d46-b637-d14092207bfe)
 
+## **Jtopo 속성 및 메서드 정의**
+
+### 메서드
+#### ✓ AutoFoldLink (점선 애니메이션 메서드)
+```jsx
+const autoFoldLink1 = new AutoFoldLink('AutoFoldLink-1', node1, node0, 'rm', 'lm')
+```
+위 코드에서 node0과 node1은 각각 new Node()라는 Jtopo의 클래스를 통해 새롭게 생성한 노드들이고, 해당 노드들을 연결하기 위해 AutoFoldLink를 활용한 것이다. 
+
+첫 번째 파라미터로는 text명, 두 번째, 세 번째는 노드의 변수명, 마지막 두개는 두개의 노드들을 연결하는 링크의 속성을 설정하기 위한 파라미터들이다. 
+
+![Alt text](image.png)
