@@ -36,3 +36,44 @@ const autoFoldLink1 = new AutoFoldLink('AutoFoldLink-1', node1, node0, 'rm', 'lm
 첫 번째 파라미터로는 text명, 두 번째, 세 번째는 노드의 변수명, 마지막 두개는 두개의 노드들을 연결하는 링크의 속성을 설정하기 위한 파라미터들이다. 
 
 ![Alt text](image.png)
+
+<br>
+
+## **Vue에서 실제로 사용해보기**
+
+> 회사에서 디자이너 분이 디자인하신 토폴로지를 직접 구현한거기 때문에 보안상 그대로 코드 노출은 불가하다.
+
+### 코드 조각
+
+#### 💡Point
+> Jtopo 자체가 코드로 직접 토폴로지를 짜는것보다 drag and drop에 특화되어 있는 라이브러리라서 직접 일일이 코드로 입력해야 하는 부분이 상당히 많다.
+
+#### 🚨 문제점
+> 예를 들어, 특정 구역들을 나눈 뒤 그 안에 있는 구역이 다른 각각의 자녀 요소들을 이어주는 AutoFoldLink 메서드를 사용할 때, 해당 링크 중앙에 특정 아이콘을 삽입하는 디자인이 있었다. 근데 그 중앙 포지셔닝을 하는데에 어려움이 있는게, 각 자녀 요소들은 부모요소들 안에 있는게 기본값이기 때문에 x값이 0으로 측정된다. 따라서 중앙값을 구하기에 어려움이 있어서 우선은 절대값으로 지정해놨는데 이부분은 나중에 동적인 데이터를 받았을 때 문제가 되기때문에 해결책을 찾아야한다.
+
+아래코드 극히 일부분이다. (참고용)
+
+```jsx
+const cloudIconMiddle = new Node('', -5, -95, 48.25, 48.25);
+cloudIconMiddle.setImage(
+    'https://email-form-images.s3.ap-northeast-2.amazonaws.com/ic-internet.svg',
+    500
+);
+cloudIconMiddle.zIndex = 9999;
+
+const subnet8 = new Node('', 590, 255, 65, 65);
+subnet8.setImage(
+    'https://email-form-images.s3.ap-northeast-2.amazonaws.com/loadBalancer-green.svg',
+    500
+);
+subnet8.zIndex = 9999;
+
+const cloudIconBottom = new Node('', 590, 195, 48.25, 48.25);
+cloudIconBottom.setImage(
+    'https://email-form-images.s3.ap-northeast-2.amazonaws.com/ic-internal-green.svg',
+    500
+);
+cloudIconBottom.zIndex = 9999;
+
+
+```
