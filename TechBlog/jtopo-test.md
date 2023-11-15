@@ -43,7 +43,7 @@ const autoFoldLink1 = new AutoFoldLink('AutoFoldLink-1', node1, node0, 'rm', 'lm
 
 > 회사에서 디자이너 분이 디자인하신 토폴로지를 직접 구현한거기 때문에 보안상 그대로 코드 노출은 불가하다.
 
-### 코드 조각
+### Code Snippet
 
 #### 💡Point
 > Jtopo 자체가 코드로 직접 토폴로지를 짜는것보다 drag and drop에 특화되어 있는 라이브러리라서 직접 일일이 코드로 입력해야 하는 부분이 상당히 많다.
