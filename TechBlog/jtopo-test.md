@@ -77,3 +77,50 @@ cloudIconBottom.zIndex = 9999;
 
 
 ```
+
+
+## Jtopo Tech - Background 따로 깔아서 보이게 하는법 & topology 요소들 Lock 설정 & Toolbar 숨기기
+
+> 우선 이 구현을 하는 이유는 Map Topology를 구현하기 위해 필요한 단계이기 때문인데, Global Map을 Background에 깐 후 그 위에 Jtopo Canvas를 가져올거라서 Jtopo의 Canvas 배경을 투명하게 만들어야한다. 또한 topology 요소들이 draggable이 불가능하게 lock 설정을 해서 고정된 background 위의 핀들이 움직이지 않도록 해야한다. 마지막으로, toolbar은 굳이 필요없기도하고 육안상으로도 보기 좋지 않기때문에 숨기는게 좋다고 판단했다.
+> 
+
+### Background 따로 깔아서 보이게 하는법
+
+이건 처음에는 :deep()이라는 css 메서드를 활용해보려 했지만 아예 적용이 되지 않아서, DOM을 활용했다.
+
+canvas 태그가 2개이기 때문에 우선 querySelectorAll로 모두 가져와서 골라서 설정하기로 했다.
+
+```jsx
+const canvas = document.querySelectorAll('canvas');
+canvas[1].style.background = 'none' // 1번째 요소에 해당하는 canvas가 조작하고자 하는 canvas임을 파악함.
+```
+
+위와 같이 설정하면 canvas background가 투명해져서 맨 밑에 배경으로 둔 map이 잘 보이게 된다.
+
+### Topology 요소들 Lock 설정
+
+이 부분은 약간의 시행착오가 있었는데 draggable이라는 속성을 false로 두면 된다고해서 되지 않아서 확인해보니, layer.addChild()부분이 실행되기전에 draggable을 false로 설정해서 이후에 추가되었던 child 부분들은 draggable 설정이 적용되지 않은 것이었다. 그래서 addChild 메서드가 모든 실행된 후 마지막 부분 draggable 설정하는 부분을 추가했고, 추가적으로 각각의 노드가 아닌 전체 노드 또한 움직이면 안되기때문에 layer 통으로도 draggble 설정을 주었다.
+
+```jsx
+.
+.
+.
+layer.addChild(node4) // 마지막 addChild
+
+layer.children.forEach(child => { // 각각의 노드에 draggable 설정하기
+	child.draggable = false;
+})
+
+layer.editable = false;
+layer.draggable = false;
+```
+
+### Toolbar 숨기기
+
+이건 쉽다. 그냥 메서드 하나만 딱 사용하면 간단하게 숨겨진다.
+
+```jsx
+const stage = new Stage(divObj)
+
+stage.hideToolbar();
+```
