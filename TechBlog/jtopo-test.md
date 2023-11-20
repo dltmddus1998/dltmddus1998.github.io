@@ -124,3 +124,15 @@ const stage = new Stage(divObj)
 
 stage.hideToolbar();
 ```
+
+### Scroll을 통한 크기조정 방지
+
+나중에 발견한 부분인데 위에서 다 설정해줘도 scroll은 안잠기더라. 그래서 따로 설정해줬다. 이것도 DOM을 활용했다.
+
+```jsx
+const canvas = document.querySelectorAll('canvas');
+// 해당 scroll 부분은 0번재 canvas에 해당한다.
+canvas[0].addEventListener('wheel', (e: Event) => {
+	e.preventDefault();
+})
+```
