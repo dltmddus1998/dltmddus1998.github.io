@@ -5,7 +5,8 @@
 > 평소처럼 npm install로 패키지 설치를 하려고 했는데 계속 아래와 같은 에러가 떴다.
 > 
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/793761ee-1da2-4c3c-8209-ce8f1147ec2d/267cf7c3-2390-430c-afd2-c0d6a5c7da9b/Untitled.png)
+![image](https://github.com/dltmddus1998/dltmddus1998.github.io/assets/73332608/c2a2faa6-bebd-4050-b9de-2ab3df6a77bc)
+
 
 서치해보니, npm을 사용하여 패키지를 설치하려고 할 때 권한 문제가 발생한 것이었다.
 
@@ -19,4 +20,4 @@
 
 이 후 npm install을 실행하면 패키지 설치가 문제없이 진행되는 것을 알 수 있다.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/793761ee-1da2-4c3c-8209-ce8f1147ec2d/1bccc3e8-50b8-49d3-9a99-94f070b6fa27/Untitled.png)
+![image](https://github.com/dltmddus1998/dltmddus1998.github.io/assets/73332608/19606e27-724e-4fa2-a750-16583b0cbcd2)
