@@ -1,5 +1,5 @@
 make --dry-run --always-make --keep-going --print-directory
-make: Entering directory `/Users/syl/Desktop/gitRepo/dltmddus1998.github.io'
+make: Entering directory `/Users/mzc01-sylee1274/Desktop/gitRepo/dltmddus1998.github.io'
 echo "HomePage: https://github.com/rundocs/jekyll-rtd-theme\n"
 echo "Usage:"
 echo "    make [subcommand]\n"
@@ -14,6 +14,5 @@ echo "    theme     Make theme as gem and install"
 echo "    build     Build the test site"
 echo "    server    Make a livereload jekyll server to development"
 echo "    checkout  Reset the theme minified css and script to last commit"
- 
-make: Leaving directory `/Users/syl/Desktop/gitRepo/dltmddus1998.github.io'
+make: Leaving directory `/Users/mzc01-sylee1274/Desktop/gitRepo/dltmddus1998.github.io'
  

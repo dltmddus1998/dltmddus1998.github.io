@@ -10,7 +10,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 make: *** No rule to make target `all'.  Stop.
 
 
-# Make data base, printed on Sat Jun 10 23:40:37 2023
+# Make data base, printed on Thu Jan 11 10:29:28 2024
 
 # Variables
 
@@ -23,19 +23,20 @@ ELECTRON_NO_ATTACH_CONSOLE = 1
 # environment
 VSCODE_CRASH_REPORTER_PROCESS_TYPE = extensionHost
 # environment
-NVM_INC = /Users/syl/.nvm/versions/node/v16.13.0/include/node
+NVM_INC = /Users/mzc01-sylee1274/.nvm/versions/node/v18.16.0/include/node
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # automatic
 @D = $(patsubst %/,%,$(dir $@))
 # automatic
 @F = $(notdir $@)
+ 
 # makefile
-CURDIR := /Users/syl/Desktop/gitRepo/dltmddus1998.github.io
+CURDIR := /Users/mzc01-sylee1274/Desktop/gitRepo/dltmddus1998.github.io
 # makefile
 SHELL = /bin/sh
 # environment
-VSCODE_NLS_CONFIG = {"locale":"ko","osLocale":"ko-kr","availableLanguages":{"*":"ko"},"_languagePackId":"b7b0605e67614d253e673b717d741d78.ko","_translationsConfigFile":"/Users/syl/Library/Application Support/Code/clp/b7b0605e67614d253e673b717d741d78.ko/tcf.json","_cacheRoot":"/Users/syl/Library/Application Support/Code/clp/b7b0605e67614d253e673b717d741d78.ko","_resolvedLanguagePackCoreLocation":"/Users/syl/Library/Application Support/Code/clp/b7b0605e67614d253e673b717d741d78.ko/b3e4e68a0bc097f0ae7907b217c1119af9e03435","_corruptedFile":"/Users/syl/Library/Application Support/Code/clp/b7b0605e67614d253e673b717d741d78.ko/corrupted.info","_languagePackSupport":true}
+VSCODE_NLS_CONFIG = {"locale":"ko","osLocale":"ko-kr","availableLanguages":{"*":"ko"},"_languagePackId":"8c714c23d05db6b414b8ab3c57f99fbe.ko","_translationsConfigFile":"/Users/mzc01-sylee1274/Library/Application Support/Code/clp/8c714c23d05db6b414b8ab3c57f99fbe.ko/tcf.json","_cacheRoot":"/Users/mzc01-sylee1274/Library/Application Support/Code/clp/8c714c23d05db6b414b8ab3c57f99fbe.ko","_resolvedLanguagePackCoreLocation":"/Users/mzc01-sylee1274/Library/Application Support/Code/clp/8c714c23d05db6b414b8ab3c57f99fbe.ko/0ee08df0cf4527e40edc9aa28f4b5bd38bbff2b2","_corruptedFile":"/Users/mzc01-sylee1274/Library/Application Support/Code/clp/8c714c23d05db6b414b8ab3c57f99fbe.ko/corrupted.info","_languagePackSupport":true}
 # environment
 _ = /usr/bin/make
 # environment
@@ -49,47 +50,49 @@ __CFBundleIdentifier = com.microsoft.VSCode
 # environment
 INFOPATH = /opt/homebrew/share/info:
 # environment
-VSCODE_CWD = /Users/syl/Desktop/gitRepo/dltmddus1998.github.io
+VSCODE_CWD = /Users/mzc01-sylee1274/Desktop/gitRepo/dltmddus1998.github.io
 # environment
-PATH = /Users/syl/.platformsh/bin:/Users/syl/.nvm/versions/node/v16.13.0/bin:/Users/syl/.rbenv/shims:/Users/syl/.rbenv/bin:/Library/Frameworks/Python.framework/Versions/3.10/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+PATH = /Users/mzc01-sylee1274/.nvm/versions/node/v18.16.0/bin:/Users/mzc01-sylee1274/.docker/bin:/Library/Frameworks/Python.framework/Versions/3.10/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/usr/local/sbin:/usr/local/bin
 # environment
 LSCOLORS = Gxfxcxdxbxegedabagacad
 # environment
-NVM_BIN = /Users/syl/.nvm/versions/node/v16.13.0/bin
+NVM_BIN = /Users/mzc01-sylee1274/.nvm/versions/node/v18.16.0/bin
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.U0g8qCIAGl/Listeners
+LS_COLORS = di=1;36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43
+# environment
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.7aDkInAjAT/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
-PWD = /Users/syl/Desktop/gitRepo/dltmddus1998.github.io
+PWD = /Users/mzc01-sylee1274/Desktop/gitRepo/dltmddus1998.github.io
 # environment
 HOMEBREW_CELLAR = /opt/homebrew/Cellar
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = undefined
 # environment
-MANPATH = /Users/syl/.nvm/versions/node/v16.13.0/share/man:/opt/homebrew/share/man::
+MANPATH = /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/share/man:/Library/Developer/CommandLineTools/usr/share/man:/Library/Developer/CommandLineTools/Toolchains/XcodeDefault.xctoolchain/usr/share/man:/Users/mzc01-sylee1274/.nvm/versions/node/v18.16.0/share/man:/opt/homebrew/share/man::
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
-HOME = /Users/syl
+HOME = /Users/mzc01-sylee1274
 # default
 MAKEFILEPATH = $(shell /usr/bin/xcode-select -print-path 2>/dev/null || echo /Developer)/Makefiles
 # environment
 VSCODE_CLI = 1
 # environment
-VSCODE_CODE_CACHE_PATH = /Users/syl/Library/Application Support/Code/CachedData/b3e4e68a0bc097f0ae7907b217c1119af9e03435
+VSCODE_CODE_CACHE_PATH = /Users/mzc01-sylee1274/Library/Application Support/Code/CachedData/0ee08df0cf4527e40edc9aa28f4b5bd38bbff2b2
 # environment
-LOGNAME = syl
+LOGNAME = mzc01-sylee1274
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # environment
 NVM_CD_FLAGS = -q
 # environment
-ZSH = /Users/syl/.oh-my-zsh
+ZSH = /Users/mzc01-sylee1274/.oh-my-zsh
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # automatic
@@ -104,18 +107,16 @@ MAKE = $(MAKE_COMMAND)
 LC_TERMINAL = iTerm2
 # environment
 SHLVL = 3
-# environment
-VSCODE_CRASH_REPORTER_SANDBOXED_HINT = 1
 # default
 MAKE_VERSION := 3.81
 # environment
-USER = syl
+USER = mzc01-sylee1274
 # makefile
 .DEFAULT_GOAL := help
 # default
 MAKECMDGOALS := all
 # environment
-TERM_SESSION_ID = w0t0p0:C51D0D30-A09A-4286-AB7B-8D44AA1F9DE8
+TERM_SESSION_ID = w1t0p0:D0BE7FE5-48E8-49C7-970C-28BEA003A987
 # makefile (from `Makefile', line 2)
 ALIAS = jekyll-rtd-theme
 # environment
@@ -129,11 +130,11 @@ TERM_PROGRAM = iTerm.app
 # default
 .VARIABLES := 
 # environment
-TMPDIR = /var/folders/8v/nhz3r9cn5dg323cm8kd0sfvr0000gn/T/
+TMPDIR = /var/folders/9w/f_jlcl490y95nj9t79f3458w0000gn/T/
 # automatic
 *F = $(notdir $*)
 # environment
-VSCODE_IPC_HOOK = /Users/syl/Library/Application Support/Code/1.78-main.sock
+VSCODE_IPC_HOOK = /Users/mzc01-sylee1274/Library/Application Support/Code/1.85-main.sock
 # environment
 MallocNanoZone = 0
 # makefile
@@ -143,21 +144,23 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-TERM_PROGRAM_VERSION = 3.4.19
+TERM_PROGRAM_VERSION = 3.4.23
 # environment
-NVM_DIR = /Users/syl/.nvm
+NVM_DIR = /Users/mzc01-sylee1274/.nvm
 # environment
-XPC_SERVICE_NAME = application.com.microsoft.VSCode.87433888.87433896.9D2DC16E-62D3-4177-9896-B7A673C16806
+XPC_SERVICE_NAME = application.com.microsoft.VSCode.49124168.49124176.9A01E44C-926A-4DD3-BD6E-431CCEBF7143
 # environment
-LC_TERMINAL_VERSION = 3.4.19
+LC_TERMINAL_VERSION = 3.4.23
 # environment
 HOMEBREW_PREFIX = /opt/homebrew
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
+# environment
+VSCODE_L10N_BUNDLE_LOCATION = file:///Users/mzc01-sylee1274/.vscode/extensions/ms-ceintl.vscode-language-pack-ko-1.85.2023121309/translations/extensions/vscode.markdown-language-features.i18n.json
 # automatic
 +F = $(notdir $+)
 # environment
-ITERM_SESSION_ID = w0t0p0:C51D0D30-A09A-4286-AB7B-8D44AA1F9DE8
+ITERM_SESSION_ID = w1t0p0:D0BE7FE5-48E8-49C7-970C-28BEA003A987
 # environment
 HOMEBREW_REPOSITORY = /opt/homebrew
 # environment
@@ -168,8 +171,6 @@ __CF_USER_TEXT_ENCODING = 0x1F5:0x3:0x33
 COMMAND_MODE = unix2003
 # default
 MAKEFILES := 
-# environment
-RBENV_SHELL = zsh
 # automatic
 <F = $(notdir $<)
 # environment
@@ -191,9 +192,9 @@ LANG = C
 # environment
 TERM = xterm-256color
 # environment
-VSCODE_PID = 5487
+VSCODE_PID = 5454
 # variable set hash-table stats:
-# Load=89/1024=9%, Rehash=0, Collisions=6/113=5%
+# Load=89/1024=9%, Rehash=0, Collisions=5/113=4%
 
 # Pattern-specific Variable Values
 
@@ -201,7 +202,7 @@ VSCODE_PID = 5487
 
 # Directories
 
-# . (device 16777231, inode 87801973): 25 files, no impossibilities.
+# . (device 16777234, inode 15229243): 25 files, no impossibilities.
 
 # 25 files, no impossibilities in 1 directories.
 
@@ -255,7 +256,7 @@ format:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2023-06-03 00:43:00
+#  Last modified 2023-03-20 15:00:05
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -288,6 +289,7 @@ help:
 	@echo "Subcommands:"
 	@echo "    install   Install the theme dependencies"
 	@echo "    format    Format all files"
+ 
 	@echo "    report    Make a report from Google lighthouse"
 	@echo "    clean     Clean the workspace"
 	@echo "    dist      Build the theme css and script"
@@ -300,7 +302,6 @@ help:
 
 # Not a target:
 .DEFAULT:
- 
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -362,6 +363,6 @@ report:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Sat Jun 10 23:40:37 2023
+# Finished Make data base on Thu Jan 11 10:29:28 2024
 
  
