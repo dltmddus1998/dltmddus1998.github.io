@@ -69,4 +69,4 @@ export const createLine = (
 createLine('타원_10-2', '타원_13-2', '#000000', 2, 'bottom', 'top', 'arrow1', 'arrow1', 'grid');
 ```
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/793761ee-1da2-4c3c-8209-ce8f1147ec2d/56018029-be7e-4961-8f61-c4bb27ec866a/Untitled.png)
+![image](https://github.com/dltmddus1998/dltmddus1998.github.io/assets/73332608/351eaa10-4016-4c31-9293-c5aa645b6ce0)
