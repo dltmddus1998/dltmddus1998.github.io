@@ -28,6 +28,6 @@ onBeforeRouteLeave((to, from, next) => {
 });
 ```
 
->내 코드의 극히 일부분인데 간략히 설명하자면, leaderLineInstances라는 ref형태의 배열인데 여기 안에 leader-line-new로 만든 선들을 모두 push해놨다. 
+>원래 코드의 극히 일부분인데 간략히 설명하자면, leaderLineInstances라는 ref형태의 배열인데 여기 안에 leader-line-new로 만든 선들을 모두 push해놨다. 
 
 >이제 이걸 forEach를 통해 하나씩 remove해주는 형태이다. 다행히 해당 코드는 잘 적용되었고, 이제 다른 페이지로 넘어가도 잔상이 남지 않는다.
