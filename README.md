@@ -1,5 +1,5 @@
 ### 🎓 Profile
-#### Node.js 개발자 이승연
+#### 웹 개발자 이승연
 #### [GITHUB](https://github.com/dltmddus1998)
 
 ### 🔗 site
