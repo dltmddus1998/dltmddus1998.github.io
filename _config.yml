@@ -1,4 +1,4 @@
-title: sy-blog.com
+title: d
 description: 'Seungyeon Tech & Dev Blog'
 logo_img: '/assets/img/favicon.webp'
 profile_img: '/assets/img/profile.webp'
@@ -6,10 +6,10 @@ profile_img: '/assets/img/profile.webp'
 # Social Links
 email: sylee199877@gmail.com
 github_username: dltmddus1998
-twitter_username: twitter
-instagram_username: instagram
-linkedin_username: linkedin
-facebook_username: facebook
+twitter_username: dltmddus1998
+instagram_username: dltmddus1998
+linkedin_username: dltmddus1998
+facebook_username: dltmddus1998
 
 # External API
 giscus_repo: 'dltmddus1998/dltmddus1998.github.io'
@@ -21,7 +21,7 @@ google_analytics:
 
 # If your repo name follows the format "<user-name>.github.io", then leave the below blank.
 # Otherwise, set its value as "/<repo-name>". ex) baseurl: /myblog
-baseurl: /dltmddus1998.github.io
+baseurl:
 
 # Build settings
 plugins:
