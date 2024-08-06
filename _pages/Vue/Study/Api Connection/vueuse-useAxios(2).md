@@ -1,3 +1,13 @@
+---
+title: 'Vue에서 API 연결하기 (2)'
+tags:
+  - vue
+  - axios
+  - vueuse
+date: '2024-08-06'
+thumbnail: '/assets/img/thumbnail/nightgardenflower.jpg'
+---
+
 # Vue에서 API 연결하기 (2)
 
 ## [Advanced] vue에서 axios만 사용하는게 더 편리하지 않을까?
