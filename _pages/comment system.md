@@ -1,12 +1,12 @@
 ---
 title: "Manage blog comments with Giscus"
 tags:
-    - user manual
-    - utility
-    - giscus
+  - user manual
+  - utility
+  - giscus
 date: "2024-02-03"
 thumbnail: "https://i.ibb.co/V9j2Qsg/giscus-Wl0-X3byd-az-U68-1.webp"
-bookmark: true
+# bookmark: true
 ---
 
 [![goatcounter](https://opengraph.githubassets.com/4f866d5b634e7cd5422af77f8dbfb6d48dd288b7c5c18326544c1973210320ed/giscus/giscus){:class="img-lg"}](https://www.goatcounter.com/)
@@ -16,11 +16,12 @@ bookmark: true
 To comment, visitors must authorize the giscus app to post on their behalf using the GitHub OAuth flow. Alternatively, visitors can comment on the GitHub Discussion directly. You can moderate the comments on GitHub.
 
 # Prerequisites
+
 ---
 
 ## Create a github repo
 
-You need a GitHub repository first. If you gonna use *GitHub Pages* for hosting your website, you can choose the corresponding repository (i.e., `[userID].github.io`)
+You need a GitHub repository first. If you gonna use _GitHub Pages_ for hosting your website, you can choose the corresponding repository (i.e., `[userID].github.io`)
 
 The repository should be **public**, otherwise visitors will not be able to view the discussion.
 
@@ -31,6 +32,7 @@ In your GitHub repository Settings, make sure that `General` > `Features` > `Dis
 ![Discussion](https://i.ibb.co/P1FV02D/giscus-00.png)
 
 # Activate Giscus API
+
 ---
 
 Follow the steps in [Configuration guide](https://giscus.app/). Make sure the verification of your repository is successful.
@@ -41,7 +43,7 @@ Then, scroll down from the manual page and choose the `Discussion Category` opti
 
 ![Verification](https://i.ibb.co/0hqLWX0/giscus-03.png)
 
-## Copy  `_config.yml`
+## Copy `_config.yml`
 
 Now, you get the giscus script. Copy the four properties marked with a red box as shown below:
 
