@@ -1,11 +1,11 @@
 ---
-title: 'Vue에서 API 연결하기 (2)'
+title: "Vue에서 API 연결하기 (2)"
 tags:
   - vue
   - axios
   - vueuse
-date: '2024-08-06'
-thumbnail: '/assets/img/thumbnail/nightgardenflower.jpg'
+date: "2024-08-06"
+thumbnail: "/assets/img/thumbnail/nightgardenflower.jpg"
 bookmark: true
 ---
 
