@@ -6,6 +6,7 @@ tags:
   - vueuse
 date: '2024-08-06'
 thumbnail: '/assets/img/thumbnail/nightgardenflower.jpg'
+bookmark: true
 ---
 
 # Vue에서 API 연결하기 (2)
