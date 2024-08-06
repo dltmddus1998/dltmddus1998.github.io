@@ -1,3 +1,13 @@
+---
+title: 'Vue에서 API 연결하기 (1)'
+tags:
+  - vue
+  - axios
+  - vueuse
+date: '2024-08-06'
+thumbnail: '/assets/img/La-Mancha.jpg'
+---
+
 # Vue에서 API 연결하기 (1)
 
 ## axios 대신 vueuse의 useAxios를 사용한다면?
