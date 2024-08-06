@@ -1,21 +1,21 @@
-title: d
-description: 'Seungyeon Tech & Dev Blog'
-logo_img: '/assets/img/favicon.webp'
-profile_img: '/assets/img/profile.webp'
+title: "SY Tech & Dev Blog"
+description: "Seungyeon Tech & Dev Blog"
+logo_img: "/assets/img/favicon.webp"
+profile_img: "/assets/img/profile.webp"
 
 # Social Links
 email: sylee199877@gmail.com
 github_username: dltmddus1998
-twitter_username: dltmddus1998
-instagram_username: dltmddus1998
-linkedin_username: dltmddus1998
-facebook_username: dltmddus1998
+twitter_username:
+instagram_username:
+linkedin_username:
+facebook_username:
 
 # External API
-giscus_repo: 'dltmddus1998/dltmddus1998.github.io'
-giscus_repoId: 'R_kgDOJ6fqWg'
-giscus_category: 'Q&A'
-giscus_categoryId: 'DIC_kwDOJ6fqWs4Cc7p7'
+giscus_repo: "dltmddus1998/dltmddus1998.github.io"
+giscus_repoId: "R_kgDOMdaaag"
+giscus_category: "Q&A"
+giscus_categoryId: "DIC_kwDOMdaaas4ChbjP"
 goatcounter_code: byanko77
 google_analytics:
 
@@ -40,11 +40,11 @@ collections:
 
 defaults:
   - scope:
-      path: ''
-      type: 'pages'
+      path: ""
+      type: "pages"
     values:
-      layout: 'page'
-      date: '2024-07-31'
+      layout: "page"
+      date: "2024-07-31"
 
 # Markdown newline activator
 kramdown:
