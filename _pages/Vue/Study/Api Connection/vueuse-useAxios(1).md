@@ -1,11 +1,11 @@
 ---
-title: 'Vue에서 API 연결하기 (1)'
+title: "Vue에서 API 연결하기 (1)"
 tags:
   - vue
   - axios
   - vueuse
-date: '2024-08-06'
-thumbnail: '/assets/img/La-Mancha.jpg'
+date: "2024-08-06"
+thumbnail: "/assets/img/La-Mancha.jpg"
 bookmark: true
 ---
 
@@ -50,22 +50,22 @@ bookmark: true
 useAxios만 활용한다면 아래와 같이,
 
 ```tsx
-import { useAxios } from '@vueuse/integrations/useAxios';
+import { useAxios } from "@vueuse/integrations/useAxios";
 
-const { data, isFinished } = useAxios('/api/posts');
+const { data, isFinished } = useAxios("/api/posts");
 ```
 
 axios를 통해 전역 인스턴스를 생성한 후, 해당 인스턴스를 useAxios의 옵션으로 활용하는 방법은 아래와 같이 쓸 수 있다.
 
 ```tsx
-import axios from 'axios';
-import { useAxios } from '@vueuse/integrations/useAxios';
+import axios from "axios";
+import { useAxios } from "@vueuse/integrations/useAxios";
 
 const instance = axios.create({
-  baseURL: '/api',
+  baseURL: "/api",
 });
 
-const { data, isFinished } = useAxios('/posts', { method: 'POST' }, instance);
+const { data, isFinished } = useAxios("/posts", { method: "POST" }, instance);
 ```
 
 > 현재 우리 프로젝트의 추후 확장성과 유연성을 생각하면 axios와 useAxios를 같이 사용하는 방향이 더 낫다고 판단됨.
