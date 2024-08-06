@@ -1,17 +1,19 @@
 ---
 title: "Publishing your blog post"
 tags:
-    - user manual
-    - writing format
+  - user manual
+  - writing format
 date: "2024-02-04"
 thumbnail: "/assets/img/thumbnail/sample.png"
-bookmark: true
+# bookmark: true
 ---
 
 This section deals with the step-by-step process of how to write and publish posts on your site.
 
 # Make `_pages` directory
+
 ---
+
 Create a directory named `_pages` in root if you do not have it.
 
 ```
@@ -20,7 +22,9 @@ $ cd _pages
 ```
 
 # Organize your directory structure
+
 ---
+
 Our theme provides a hierarchical directory structure. You may create subdirectories (let's say `Category A`) in `_pages`, and then all post entities placed in the `Category A` directory will be categorized as such.
 
 ```txt
@@ -62,13 +66,14 @@ Your `_pages` structure now looks like this:
 ```
 
 # Write a blog post
+
 ---
 
-Create a post with file extension: `.md` (ex., *Post-name.md*).  
+Create a post with file extension: `.md` (ex., _Post-name.md_).
 
 All blog post files must begin with front matter typically used to set a title or other metadata.
 
-**Note that the `title` and `date` fields can't be left blank.** 
+**Note that the `title` and `date` fields can't be left blank.**
 
 For a simple example:
 
@@ -139,6 +144,7 @@ bookmark: true
 ![](https://i.ibb.co/2sFZNNK/21313.webp){:class="img-sm"}
 
 # Example `_pages` structure
+
 ---
 
 Here is the structure introduced in our repo:
@@ -155,7 +161,7 @@ Here is the structure introduced in our repo:
 |       └── post-02.md
 ├── Category B
 |   └── index.md
-|   ├── Subcatecory b    
+|   ├── Subcatecory b
 |       └── index.md
 |       └── post-03.md
 |       ├── Subsubcategory 1

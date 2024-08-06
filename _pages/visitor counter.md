@@ -1,19 +1,20 @@
 ---
 title: "Activate Goat Counter to know how many users visit your blog or posts"
 tags:
-    - user manual
-    - utility
-    - goatcounter
+  - user manual
+  - utility
+  - goatcounter
 date: "2024-02-02"
 thumbnail: "https://i.ibb.co/xj20N3N/card.webp"
-bookmark: true
+# bookmark: true
 ---
 
 [![goatcounter](https://cdn.icon-icons.com/icons2/2699/PNG/512/goatcounter_logo_icon_170078.png){:class="img-md"}](https://www.goatcounter.com/)
 
-GoatCounter is an open source **web analytics platform** available as a free donation-supported hosted service or self-hosted app. It aims to offer easy to use and meaningful privacy-friendly web analytics as an alternative to Google Analytics or Matomo (*in official guide*).
+GoatCounter is an open source **web analytics platform** available as a free donation-supported hosted service or self-hosted app. It aims to offer easy to use and meaningful privacy-friendly web analytics as an alternative to Google Analytics or Matomo (_in official guide_).
 
 # Getting started
+
 ---
 
 ## Sign up & Get your access code
@@ -37,4 +38,3 @@ Sign in **Goat counter** from your browser, and enter the [Settings](https://[my
 Make sure `Allow adding visitor counts on your website` is checked:
 
 ![](https://i.ibb.co/R7TKCmy/2024-01-13-043651.png){:class="img-md"}
-
