@@ -20,7 +20,7 @@ bookmark: true
 
 > 근데, WebStorm은 설정파일에서 아래와 같이 따로 설정해줘야 위에서 말한 .eslintrc.js 파일이 적용될 수 있다. (우리의 경우, eslint파일 내에 prettier 설정도 함께해주었다. )
 
-![스크린샷 2024-08-08 오후 5.50.26.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/793761ee-1da2-4c3c-8209-ce8f1147ec2d/e925bf72-1ecb-4a22-849c-0011bd2a9025/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2024-08-08_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_5.50.26.png)
+![image](https://github.com/user-attachments/assets/0be61c72-0347-4ae8-9758-8af0932dc428)
 
 > eslint와 prettier 설정하는데만 많은 시간이 들었는데, 이건 WebStorm 때문은 아니고 그냥 eslint 설정이 제대로 안돼서 계속 오류가 났다. extends 부분에 제대로 된 플러그인들을 입력해줘야 하는데 그렇지 못해서 그랬던 것 같다. 최종적으로 모든 파일에 에러 없이 eslint가 적용된 설정파일은 아래와 같다. (참고로 vue2 관련 eslint 설정파일이다)
 
