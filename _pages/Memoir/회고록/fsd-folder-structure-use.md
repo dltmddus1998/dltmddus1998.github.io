@@ -57,7 +57,7 @@ FSD (Feature-Sliced Design)는 프론트엔드 애플리케이션을 구조화�
 
 Layers, slices, 그리고 segments는 아래와 같이 계층을 형성한다.
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/793761ee-1da2-4c3c-8209-ce8f1147ec2d/ca8b350b-5415-45bd-923d-89f16090ec95/image.png)
+![image](https://github.com/user-attachments/assets/47a0ea45-7fe2-4740-b5e6-973efae61bd1)
 
 자, 여기부터는 내가 프로젝트를 진행하면서 활용했던 FSD 폴더구조 방식과 연관지어 말해보겠다.
 
