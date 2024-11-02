@@ -1,5 +1,5 @@
 ---
-title: "FSD 포ㄹ더구조 사용 후기 (2)"
+title: "FSD 폴더구조 사용 후기 (2)"
 tags:
   - FSD
   - Feature-Sliced Design
