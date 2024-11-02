@@ -21,7 +21,7 @@ bookmark: true
 
 우선 대충 네이버 화면을 보고 생각해보자
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/793761ee-1da2-4c3c-8209-ce8f1147ec2d/9ee5c91c-65b2-42e9-a759-c2375b950e81/83f9fdce-3143-4609-8824-591d90fe50ae.png)
+![image](https://github.com/user-attachments/assets/3c632e5a-2277-4fbd-896f-3d9d36f07669)
 
 난 우선 파란색 박스 내에 있는 것들은 이 페이지 내에서 구성하는 요소들 중 가장 큰 단위로 분류했다.
 
