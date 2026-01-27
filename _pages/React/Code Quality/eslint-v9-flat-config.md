@@ -99,7 +99,7 @@ rules: {
 
 [`eslint-plugin-boundaries`](https://github.com/javierbrea/eslint-plugin-boundaries)로 FSD 레이어 간 의존성 규칙을 강제했다.
 
-<details>
+<details markdown="1">
 <summary><strong>📦 boundaries 규칙 전체 코드 보기</strong></summary>
 
 ```js
@@ -160,7 +160,7 @@ import { Button } from '@/shared/ui/Button/Button'
 | `.ts` | **camelCase** | `useAuth.ts` |
 | 폴더 | **kebab-case** | `user-profile/` |
 
-<details>
+<details markdown="1">
 <summary><strong>📦 설정 코드 보기</strong></summary>
 
 ```js
@@ -181,7 +181,7 @@ import { Button } from '@/shared/ui/Button/Button'
 
 FSD 구조를 반영한 import 정렬 규칙을 적용했다.
 
-<details>
+<details markdown="1">
 <summary><strong>📦 import 정렬 규칙 전체 코드 보기</strong></summary>
 
 ```js
