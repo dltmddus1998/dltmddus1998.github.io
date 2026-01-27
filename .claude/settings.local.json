@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nrefactor: React 카테고리 구조 개편\n\n- React Migration 폴더 제거\n- React 대메뉴 아래 주제별 카테고리 구성\n  - Code Quality: ESLint v9 flat config 설정\n  - Styling: TailwindCSS v4 설정\n  - Dev Tools: Claude Code AI 도구 설정\n- 각 포스트에 bookmark 추가하여 사이드바 표시\n\n🤖 Generated with [Claude Code](https://claude.ai/claude-code)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n)\")"
+    ]
+  }
+}

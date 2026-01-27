@@ -1,11 +1,12 @@
 ---
-title: "Lint 설정"
+title: "ESLint v9 Flat Config 설정 가이드"
 date: "2026-01-27"
+bookmark: true
 tags:
     - React
-    - Migration
     - ESLint
-    - Lint
+    - TypeScript
+    - FSD
 ---
 
 # CloudOps Console v2 - ESLint 설정 구축
